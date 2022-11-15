@@ -10,6 +10,9 @@ const estilos = {
         marginLeft: "auto",
         marginRight: "auto",
     },
+    boton: {
+        marginRight: "10px",
+    },
 };
 
 const ProductosMod = () => {
@@ -20,14 +23,6 @@ const ProductosMod = () => {
         formState: { errors },
         setValue,
     } = useForm();
-
-    // const modificar = async (id, payload) => {
-    //     try {
-    //         return await firebase.firestore().doc(`productos/${id}`).set(payload);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
 
     useEffect(() => {
         const peticion = async () => {
@@ -51,6 +46,15 @@ const ProductosMod = () => {
             console.log(error);
         }
     };
+
+    const deleteProduct = (id) => {
+        try {
+            firebase.firestore().doc(`productos/${id}`).delete;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div>
             <Form style={estilos.form} onSubmit={handleSubmit(onSubmit)}>
@@ -70,8 +74,11 @@ const ProductosMod = () => {
                     <Form.Label>Imagen</Form.Label>
                     <Form.Control type="text" {...register("image", { required: true })} />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" style={estilos.boton}>
                     Guardar
+                </Button>
+                <Button variant="danger" onClick={deleteProduct}>
+                    Eliminar producto
                 </Button>
             </Form>
         </div>
