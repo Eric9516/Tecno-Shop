@@ -38,6 +38,13 @@ const Productos = () => {
                                         Ver detalles
                                     </Link>
                                 </Button>
+                                <br />
+                                <br />
+                                <Button variant="primary">
+                                    <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/editar/${item.id}`}>
+                                        Editar
+                                    </Link>
+                                </Button>
                             </Card.Body>
                         </Card>
                     </div>

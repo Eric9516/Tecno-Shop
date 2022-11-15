@@ -5,6 +5,7 @@ import Login from "./Pages/Login";
 import NavBar from "./Components/NavBar";
 import Producto from "./Pages/Producto";
 import ProductosAlta from "./Pages/ProductosAlta";
+import ProductosMod from "./Pages/ProductosMod";
 
 const estilos = {
     app: {
@@ -21,7 +22,8 @@ function App() {
                     <Route path="/registro" element={<Registro />} />
                     <Route path="/producto/:id" element={<Producto />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/productos/alta" element={<ProductosAlta />} />
+                    <Route path="/producto/alta" element={<ProductosAlta />} />
+                    <Route path="/producto/editar/:id" element={<ProductosMod />} />
                 </Routes>
             </Router>
         </div>
