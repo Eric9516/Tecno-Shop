@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import firebase from "../Config/firebase";
 
@@ -23,7 +23,7 @@ const ProductosMod = () => {
         formState: { errors },
         setValue,
     } = useForm();
-
+    const navigate = useNavigate();
     useEffect(() => {
         const peticion = async () => {
             try {
@@ -42,6 +42,7 @@ const ProductosMod = () => {
     const onSubmit = async (data) => {
         try {
             await firebase.firestore().doc(`productos/${id}`).set(data);
+            navigate("/home");
         } catch (error) {
             console.log(error);
         }

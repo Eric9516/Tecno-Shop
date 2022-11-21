@@ -1,7 +1,10 @@
 import React from "react";
+import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import firebase from "../Config/firebase";
+import { AuthContext } from "../Context/AuthContext";
 
 const estilos = {
     form: {
@@ -17,9 +20,15 @@ const Login = () => {
         register,
         formState: { errors },
     } = useForm();
+    const navigate = useNavigate();
+    const context = useContext(AuthContext);
     const onSubmit = async (data) => {
         try {
             const responseUser = await firebase.auth.signInWithEmailAndPassword(data.email, data.password);
+            if (responseUser.user.uid) {
+                context.handlerLogin();
+                navigate("/Home");
+            }
         } catch (error) {
             console.log(error);
         }
