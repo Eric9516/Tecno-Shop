@@ -47,9 +47,9 @@ const ProductosMod = () => {
         }
     };
 
-    const deleteProduct = (id) => {
+    const deleteProduct = async (id) => {
         try {
-            firebase.firestore().doc(`productos/${id}`).delete;
+            firebase.firestore().doc(`productos/${id}`).delete();
         } catch (error) {
             console.log(error);
         }

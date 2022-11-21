@@ -45,6 +45,13 @@ const Productos = () => {
                                         Editar
                                     </Link>
                                 </Button>
+                                <br />
+                                <br />
+                                <Button variant="primary">
+                                    <Link style={{ color: "#fff", textDecoration: "none" }} to={`/carrito/${item.id}`}>
+                                        Agregar al carrito
+                                    </Link>
+                                </Button>
                             </Card.Body>
                         </Card>
                     </div>

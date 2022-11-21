@@ -6,6 +6,7 @@ import NavBar from "./Components/NavBar";
 import Producto from "./Pages/Producto";
 import ProductosAlta from "./Pages/ProductosAlta";
 import ProductosMod from "./Pages/ProductosMod";
+import Carrito from "./Pages/Carrito";
 
 const estilos = {
     app: {
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/producto/alta" element={<ProductosAlta />} />
                     <Route path="/producto/editar/:id" element={<ProductosMod />} />
+                    <Route path="/Carrito/id" element={<Carrito />} />
                 </Routes>
             </Router>
         </div>
