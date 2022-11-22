@@ -3,12 +3,12 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAgSlyVNkKhcuh4ggSEthi-wujGtx5ep2o",
-    authDomain: "virtualshop-53444.firebaseapp.com",
-    projectId: "virtualshop-53444",
-    storageBucket: "virtualshop-53444.appspot.com",
-    messagingSenderId: "931673421532",
-    appId: "1:931673421532:web:927e382aeb18b15032a619",
+    apiKey: "AIzaSyCCujJbX3IyW59rWo1qmHjNhuZbNjsk4EU",
+    authDomain: "laputamadre-2b90b.firebaseapp.com",
+    projectId: "laputamadre-2b90b",
+    storageBucket: "laputamadre-2b90b.appspot.com",
+    messagingSenderId: "945932347133",
+    appId: "1:945932347133:web:c282375930afdba5748094",
 };
 firebase.initializeApp(firebaseConfig);
 firebase.auth = firebase.auth();

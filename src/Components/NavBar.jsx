@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 const estilos = {
     navBar: {
@@ -14,10 +15,14 @@ const estilos = {
     navBrand: {
         width: "60%",
     },
+    link: {
+        color: "#000",
+    },
 };
 
 const NavBar = () => {
     const context = useContext(AuthContext);
+    let nombre = `${context.user.name} ${context.user.lastname}`;
     return (
         <div>
             <Navbar bg="dark" variant="dark" style={estilos.navBar}>
@@ -28,11 +33,18 @@ const NavBar = () => {
                     <Nav.Link as={Link} to="/home">
                         Home
                     </Nav.Link>
+                    {context.login && <div></div>}
                     {context.login && (
                         <>
                             <Nav.Link as={Link} to="/producto/alta">
                                 Agregar producto
                             </Nav.Link>
+
+                            <NavDropdown title={nombre} id="nav-dropdown">
+                                <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
+                                    Cerrar sessión
+                                </Nav.Link>
+                            </NavDropdown>
                         </>
                     )}
                     {!context.login && (

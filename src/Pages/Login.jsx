@@ -26,8 +26,11 @@ const Login = () => {
         try {
             const responseUser = await firebase.auth.signInWithEmailAndPassword(data.email, data.password);
             if (responseUser.user.uid) {
-                context.handlerLogin();
+                const userDocument = await firebase.firestore().collection("usuarios").where("userId", "==", responseUser.user.uid).get();
+                const user = userDocument.docs[0].data();
+                context.handlerLogin(user);
                 navigate("/Home");
+                console.log(user);
             }
         } catch (error) {
             console.log(error);

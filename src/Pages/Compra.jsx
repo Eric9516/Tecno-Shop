@@ -71,7 +71,6 @@ const Comprar = () => {
             return setCantidad(+cantidad - 1);
         } else {
             alert("No se puede comprar menos de 1 producto");
-            // setCantidad(1);
         }
     };
 
@@ -80,7 +79,7 @@ const Comprar = () => {
             Swal.fire({
                 title: "<strong>Gracias por su compra!</strong>",
                 icon: "success",
-                html: "A la brevedad nos pondremos en contacto con usted para coordinar el envio de su compra",
+                html: "A la brevedad nos pondremos en contacto con usted para coordinar el envio del producto.",
                 showCloseButton: true,
                 showCancelButton: false,
                 focusConfirm: false,
