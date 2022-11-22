@@ -7,6 +7,7 @@ import Producto from "./Pages/Producto";
 import ProductosAlta from "./Pages/ProductosAlta";
 import ProductosMod from "./Pages/ProductosMod";
 import AuthProvider from "./Context/AuthContext";
+import Comprar from "./Pages/Compra";
 
 const estilos = {
     app: {
@@ -20,10 +21,12 @@ function App() {
                 <AuthProvider>
                     <NavBar />
                     <Routes>
+                        <Route path="/" element={<Home />} />
                         <Route path="/home" element={<Home />} />
+                        <Route path="/comprar/:id" element={<Comprar />} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/registro" element={<Registro />} />
                         <Route path="/producto/:id" element={<Producto />} />
-                        <Route path="/login" element={<Login />} />
                         <Route path="/producto/alta" element={<ProductosAlta />} />
                         <Route path="/producto/editar/:id" element={<ProductosMod />} />
                     </Routes>

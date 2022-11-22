@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import firebase from "../Config/firebase";
 
 const estilos = {
@@ -17,9 +18,11 @@ const Registro = () => {
         register,
         formState: { errors },
     } = useForm();
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
             const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email, data.password);
+            navigate("/home");
             if (responseUser.user.uid) {
                 const document = await firebase.firestore().collection("usuarios").add({
                     name: data.name,

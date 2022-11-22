@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 import "../estilos.css";
 import { Button, Card } from "react-bootstrap";
 import firebase from "../Config/firebase";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
 
 const estilos = {
     boton: {
@@ -13,7 +17,8 @@ const estilos = {
 const Detalle = () => {
     const { id } = useParams();
     const [resultado, setResultado] = useState({});
-
+    const navigate = useNavigate();
+    const context = useContext(AuthContext);
     useEffect(() => {
         const peticion = async () => {
             try {
@@ -25,6 +30,22 @@ const Detalle = () => {
         };
         peticion();
     }, []);
+
+    const handlerBuy = () => {
+        if (context.login) {
+            navigate(`/Comprar/${id}`);
+        } else {
+            Swal.fire({
+                position: "top-center",
+                icon: "info",
+                title: "Inicie sesión para poder continuar con la compra",
+                showConfirmButton: false,
+                timer: 2500,
+            });
+            navigate("/Login");
+        }
+    };
+
     return (
         <div className="contenedor_detalle">
             <Card style={{ width: "300px", margin: "0 auto" }}>
@@ -33,7 +54,9 @@ const Detalle = () => {
                     <Card.Title>🛒{resultado.name}</Card.Title>
                     <Card.Text>▪ Precio: ${resultado.price}</Card.Text>
                     <Card.Text>▪ Descripción: {resultado.description}</Card.Text>
-                    <Button variant="primary">Comprar</Button>
+                    <Button variant="primary" onClick={handlerBuy}>
+                        Comprar
+                    </Button>
                 </Card.Body>
             </Card>
         </div>
