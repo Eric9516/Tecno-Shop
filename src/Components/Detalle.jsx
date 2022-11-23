@@ -53,7 +53,7 @@ const Detalle = () => {
                 <Card.Body>
                     <Card.Title>🛒{resultado.name}</Card.Title>
                     <Card.Text>▪ Precio: ${resultado.price}</Card.Text>
-                    <Card.Text>▪ Descripción: {resultado.description}</Card.Text>
+                    <Card.Text>{resultado.description}</Card.Text>
                     <Button variant="primary" onClick={handlerBuy}>
                         Comprar
                     </Button>
