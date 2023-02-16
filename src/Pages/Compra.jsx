@@ -61,7 +61,7 @@ const Comprar = () => {
             }
         };
         peticion();
-    }, []);
+    }, [id]);
 
     const sumar = () => {
         return setCantidad(+cantidad + 1);
@@ -112,7 +112,7 @@ const Comprar = () => {
                     </Form.Select>
                 </Form.Group>
                 <>
-                    {pay == "Tarjeta de crédito" ? (
+                    {pay === "Tarjeta de crédito" ? (
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label></Form.Label>
                             <Form.Control type="number" placeholder="N° de tarjeta" required />

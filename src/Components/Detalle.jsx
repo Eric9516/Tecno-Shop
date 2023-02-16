@@ -8,12 +8,6 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 
-const estilos = {
-    boton: {
-        padding: "5px 45px",
-    },
-};
-
 const Detalle = () => {
     const { id } = useParams();
     const [resultado, setResultado] = useState({});
@@ -29,7 +23,7 @@ const Detalle = () => {
             }
         };
         peticion();
-    }, []);
+    }, [id]);
 
     const handlerBuy = () => {
         if (context.login) {

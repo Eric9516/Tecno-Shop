@@ -18,7 +18,6 @@ const Login = () => {
     const {
         handleSubmit,
         register,
-        formState: { errors },
     } = useForm();
     const navigate = useNavigate();
     const context = useContext(AuthContext);

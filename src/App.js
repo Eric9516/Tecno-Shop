@@ -9,11 +9,6 @@ import ProductosMod from "./Pages/ProductosMod";
 import AuthProvider from "./Context/AuthContext";
 import Comprar from "./Pages/Compra";
 
-const estilos = {
-    app: {
-        display: "flex",
-    },
-};
 function App() {
     return (
         <div className="App">

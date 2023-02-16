@@ -13,15 +13,11 @@ const estilos = {
 };
 
 const ProductosAlta = () => {
-    const {
-        handleSubmit,
-        register,
-        formState: { errors },
-    } = useForm();
+    const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
-            const document = await firebase.firestore().collection("productos").add(data);
+            await firebase.firestore().collection("productos").add(data);
             navigate("/home");
         } catch (error) {
             console.log(error);

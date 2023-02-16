@@ -13,18 +13,14 @@ const estilos = {
 };
 
 const Registro = () => {
-    const {
-        handleSubmit,
-        register,
-        formState: { errors },
-    } = useForm();
+    const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
             const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email, data.password);
             navigate("/home");
             if (responseUser.user.uid) {
-                const document = await firebase.firestore().collection("usuarios").add({
+                await firebase.firestore().collection("usuarios").add({
                     name: data.name,
                     lastname: data.lastname,
                     userId: responseUser.user.uid,

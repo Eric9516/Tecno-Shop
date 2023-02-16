@@ -17,12 +17,7 @@ const estilos = {
 
 const ProductosMod = () => {
     const { id } = useParams();
-    const {
-        handleSubmit,
-        register,
-        formState: { errors },
-        setValue,
-    } = useForm();
+    const { handleSubmit, register, setValue } = useForm();
     const navigate = useNavigate();
     useEffect(() => {
         const peticion = async () => {
