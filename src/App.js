@@ -8,6 +8,7 @@ import ProductosAlta from "./Pages/ProductosAlta";
 import ProductosMod from "./Pages/ProductosMod";
 import AuthProvider from "./Context/AuthContext";
 import Comprar from "./Pages/Compra";
+import Perfil from "./Pages/Perfil";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                         <Route path="/home" element={<Home />} />
                         <Route path="/comprar/:id" element={<Comprar />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/perfil" element={<Perfil />} />
                         <Route path="/registro" element={<Registro />} />
                         <Route path="/producto/:id" element={<Producto />} />
                         <Route path="/producto/alta" element={<ProductosAlta />} />

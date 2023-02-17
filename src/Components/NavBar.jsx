@@ -27,7 +27,7 @@ const NavBar = () => {
         <div>
             <Navbar bg="dark" variant="dark" style={estilos.navBar}>
                 <Navbar.Brand href="#home" style={estilos.navBrand}>
-                    VirtualShop
+                    TecnoShop
                 </Navbar.Brand>
                 <Nav>
                     <Nav.Link as={Link} to="/home">
@@ -41,6 +41,9 @@ const NavBar = () => {
                             </Nav.Link>
 
                             <NavDropdown title={nombre} id="nav-dropdown">
+                                <Nav.Link as={Link} style={estilos.link} to="/perfil">
+                                    Mi perfil
+                                </Nav.Link>
                                 <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
                                     Cerrar sessión
                                 </Nav.Link>
@@ -50,6 +53,9 @@ const NavBar = () => {
                     {context.login && context.admin !== "Eric" && (
                         <>
                             <NavDropdown title={nombre} id="nav-dropdown">
+                                <Nav.Link as={Link} style={estilos.link} to="/perfil">
+                                    Mi perfil
+                                </Nav.Link>
                                 <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
                                     Cerrar sessión
                                 </Nav.Link>
