@@ -57,7 +57,7 @@ const Productos = () => {
                                 <Card.Body>
                                     <Card.Title>🛒{item.data().name}</Card.Title>
                                     <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
-                                    {context.login && (
+                                    {context.login && context.admin == "Eric" && (
                                         <>
                                             <Button variant="primary">
                                                 <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
@@ -65,12 +65,22 @@ const Productos = () => {
                                                 </Link>
                                             </Button>
                                             <br />
-                                            <br />
                                             <Button variant="primary">
                                                 <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/editar/${item.id}`}>
                                                     Editar
                                                 </Link>
                                             </Button>
+                                            <br />
+                                        </>
+                                    )}
+                                    {context.login && context.admin !== "Eric" && (
+                                        <>
+                                            <Button variant="primary">
+                                                <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
+                                                    Ver detalles
+                                                </Link>
+                                            </Button>
+                                            <br />
                                         </>
                                     )}
                                     {!context.login && (

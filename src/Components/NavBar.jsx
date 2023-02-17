@@ -34,12 +34,21 @@ const NavBar = () => {
                         Home
                     </Nav.Link>
                     {context.login && <div></div>}
-                    {context.login && (
+                    {context.login && context.admin == "Eric" && (
                         <>
                             <Nav.Link as={Link} to="/producto/alta">
                                 Agregar producto
                             </Nav.Link>
 
+                            <NavDropdown title={nombre} id="nav-dropdown">
+                                <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
+                                    Cerrar sessión
+                                </Nav.Link>
+                            </NavDropdown>
+                        </>
+                    )}
+                    {context.login && context.admin !== "Eric" && (
+                        <>
                             <NavDropdown title={nombre} id="nav-dropdown">
                                 <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
                                     Cerrar sessión

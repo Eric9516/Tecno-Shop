@@ -15,10 +15,7 @@ const estilos = {
 };
 
 const Login = () => {
-    const {
-        handleSubmit,
-        register,
-    } = useForm();
+    const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const context = useContext(AuthContext);
     const onSubmit = async (data) => {
@@ -27,7 +24,7 @@ const Login = () => {
             if (responseUser.user.uid) {
                 const userDocument = await firebase.firestore().collection("usuarios").where("userId", "==", responseUser.user.uid).get();
                 const user = userDocument.docs[0].data();
-                context.handlerLogin(user);
+                context.handlerLogin(user, user.name);
                 navigate("/Home");
                 console.log(user);
             }
