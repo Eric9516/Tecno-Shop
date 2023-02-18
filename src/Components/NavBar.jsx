@@ -26,7 +26,7 @@ const NavBar = () => {
     return (
         <div>
             <Navbar bg="dark" variant="dark" style={estilos.navBar}>
-                <Navbar.Brand href="#home" style={estilos.navBrand}>
+                <Navbar.Brand as={Link} to="/home" style={estilos.navBrand}>
                     TecnoShop
                 </Navbar.Brand>
                 <Nav>

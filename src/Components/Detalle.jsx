@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../estilos.css";
+import "../styles/estilos.css";
 import { Button, Card } from "react-bootstrap";
 import firebase from "../Config/firebase";
 import { useNavigate } from "react-router-dom";

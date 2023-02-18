@@ -5,14 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import firebase from "../Config/firebase";
 import { AuthContext } from "../Context/AuthContext";
-
-const estilos = {
-    form: {
-        width: "50%",
-        marginLeft: "auto",
-        marginRight: "auto",
-    },
-};
+import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/login";
 
 const Login = () => {
     const [emailError, setEmailError] = useState("");
@@ -39,25 +32,31 @@ const Login = () => {
                 setPassError("Su cuenta ha sido temporalmente suspendida debido al ingreso erroneo de sus datos de inicio de sisión de forma repetida, intente nuevamente en 30 minutos");
         }
     };
+
+    const redireccionar = () => {
+        navigate("/registro");
+    };
     return (
-        <div>
-            <Form onSubmit={handleSubmit(onSubmit)} style={estilos.form}>
+        <Div>
+            <Titulo>
+                <H2>BIENVENIDO</H2>
+            </Titulo>
+            <Formulario onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Ingrese su email" {...register("email")} />
+                    <Input type="email" placeholder="Ingrese su email" {...register("email")} />
                     <p>{emailError}</p>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="Ingrese su contraseña" {...register("password")} />
+                    <Input type="password" placeholder="Ingrese su contraseña" {...register("password")} />
                     <p>{passError}</p>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Boton variant="primary" type="submit">
                     Ingresar
-                </Button>
-            </Form>
-        </div>
+                </Boton>
+                <P onClick={redireccionar}>¿No tienes cuenta? Registrate</P>
+            </Formulario>
+        </Div>
     );
 };
 
