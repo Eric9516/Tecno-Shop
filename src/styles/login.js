@@ -37,6 +37,9 @@ export const Div = styled.div`
         width: 85%;
         height: 60vh;
     }
+    @media screen and (min-height: 700px) {
+        height: 35vh;
+    }
 `;
 
 export const Formulario = styled(Form)`
