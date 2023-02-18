@@ -9,10 +9,11 @@ const Perfil = () => {
 
     return (
         <>
-            <div>{context.user.name}</div>
-            <div>{context.user.lastname}</div>
-            <div>{context.user.userId}</div>
-            <div>{context.user.email}</div>
+            <form action="">
+                <input type="text" value={context.user.name} id="" readOnly />
+                <input type="text" value={context.user.lastname} id="" readOnly />
+                <input type="text" value={context.user.email} id="" readOnly />
+            </form>
         </>
     );
 };
