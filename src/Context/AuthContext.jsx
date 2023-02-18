@@ -4,9 +4,9 @@ export const AuthContext = React.createContext();
 const AuthProvider = ({ children }) => {
     const [login, setLogin] = useState(localStorage.getItem("login") || false);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || {});
-    const [admin, setAdmin] = useState("");
-    const handlerLogin = (userData, name) => {
-        setAdmin(name);
+    const [email, setEmail] = useState("");
+    const handlerLogin = (userData) => {
+        setEmail(email);
         setLogin(true);
         localStorage.setItem("login", true);
         setUser(userData);
@@ -22,8 +22,8 @@ const AuthProvider = ({ children }) => {
         <AuthContext.Provider
             value={{
                 login,
-                admin,
                 user,
+                email,
                 handlerLogin,
                 handlerLogOut,
             }}

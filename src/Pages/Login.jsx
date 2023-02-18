@@ -26,7 +26,7 @@ const Login = () => {
                 const user = userDocument.docs[0].data();
                 context.handlerLogin(user, user.name);
                 navigate("/Home");
-                console.log(user);
+                console.log(userDocument);
             }
         } catch (error) {
             console.log(error);

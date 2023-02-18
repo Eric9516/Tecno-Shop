@@ -57,7 +57,7 @@ const Productos = () => {
                                 <Card.Body>
                                     <Card.Title>🛒{item.data().name}</Card.Title>
                                     <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
-                                    {context.login && context.admin == "Eric" && (
+                                    {context.login && context.user.userId == "wFVGMZPsPlPw7wKmKNuOsfNofdx1" && (
                                         <>
                                             <Button variant="primary">
                                                 <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
@@ -73,7 +73,7 @@ const Productos = () => {
                                             <br />
                                         </>
                                     )}
-                                    {context.login && context.admin !== "Eric" && (
+                                    {context.login && context.user.userId !== "wFVGMZPsPlPw7wKmKNuOsfNofdx1" && (
                                         <>
                                             <Button variant="primary">
                                                 <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>

@@ -23,6 +23,7 @@ const Registro = () => {
                 await firebase.firestore().collection("usuarios").add({
                     name: data.name,
                     lastname: data.lastname,
+                    email: data.email,
                     userId: responseUser.user.uid,
                 });
             }
