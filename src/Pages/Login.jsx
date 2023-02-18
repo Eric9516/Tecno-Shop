@@ -54,8 +54,8 @@ const Login = () => {
                 <Boton variant="primary" type="submit">
                     Ingresar
                 </Boton>
-                <P onClick={redireccionar}>¿No tienes cuenta? Registrate</P>
             </Formulario>
+            <P onClick={redireccionar}>¿No tienes cuenta? Registrate</P>
         </Div>
     );
 };

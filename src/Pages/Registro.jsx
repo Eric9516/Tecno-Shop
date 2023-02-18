@@ -4,14 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import firebase from "../Config/firebase";
-
-const estilos = {
-    form: {
-        width: "50%",
-        marginLeft: "auto",
-        marginRight: "auto",
-    },
-};
+import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/registro";
 
 const Registro = () => {
     const [emailError, setEmailError] = useState("");
@@ -44,32 +37,36 @@ const Registro = () => {
             if (error.code !== "auth/email-already-in-use") setEmailError("");
         }
     };
+
+    const redireccionar = () => {
+        navigate("/login");
+    };
     return (
-        <div>
-            <Form style={estilos.form} onSubmit={handleSubmit(onSubmit)}>
+        <Div>
+            <Titulo>
+                <H2>Registrate</H2>
+            </Titulo>
+            <Formulario onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" placeholder="Ingrese su nombre" {...register("name", { required: true })} />
+                    <Input type="text" placeholder="Ingrese su nombre" {...register("name", { required: true })} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Apellido</Form.Label>
-                    <Form.Control type="text" placeholder="Ingrese su apellido" {...register("lastname")} />
+                    <Input type="text" placeholder="Ingrese su apellido" {...register("lastname")} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Ingrese su Email" {...register("email", { required: true })} />
+                    <Input type="email" placeholder="Ingrese su Email" {...register("email", { required: true })} />
                     <p>{emailError}</p>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="Ingrese su contraseña" {...register("password", { required: true })} />
+                    <Input type="password" placeholder="Ingrese su contraseña" {...register("password", { required: true })} />
                     <p>{passError}</p>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Boton variant="primary" type="submit">
                     Registrarse
-                </Button>
-            </Form>
-        </div>
+                </Boton>
+            </Formulario>
+            <P onClick={redireccionar}>¿Tienes una cuenta? Ingresar</P>
+        </Div>
     );
 };
 

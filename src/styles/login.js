@@ -33,6 +33,10 @@ export const Div = styled.div`
         width: 70%;
         height: 60vh;
     }
+    @media screen and (max-width: 300px) {
+        width: 85%;
+        height: 60vh;
+    }
 `;
 
 export const Formulario = styled(Form)`
