@@ -15,6 +15,24 @@ export const Div = styled.div`
     border-radius: 15px;
     background-color: #c7bacb;
     box-shadow: 0px 0px 7px 3px #444;
+
+    @media screen and (min-width: 1600px) {
+        //pantallas grandes
+        width: 25%;
+        height: 45vh;
+    }
+    @media screen and (max-width: 960px) {
+        width: 50%;
+        height: 60vh;
+    }
+    @media screen and (max-width: 500px) {
+        width: 60%;
+        height: 60vh;
+    }
+    @media screen and (max-width: 400px) {
+        width: 70%;
+        height: 60vh;
+    }
 `;
 
 export const Formulario = styled(Form)`
@@ -25,6 +43,7 @@ export const Input = styled(FormControl)`
     background-color: #385273;
     width: 100%;
     padding: 10px;
+    color: #fff;
 
     ::placeholder {
         color: #fff;
@@ -45,6 +64,12 @@ export const Titulo = styled.div`
 
 export const H2 = styled.h2`
     color: #0d6efd;
+    margin-bottom: 40px;
+
+    @media screen and (min-width: 1600px) {
+        //pantallas grandes
+        margin: 0;
+    }
 `;
 
 export const P = styled.p`
