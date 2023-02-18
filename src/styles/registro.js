@@ -38,7 +38,7 @@ export const Div = styled.div`
         height: 75vh;
     }
     @media screen and (min-height: 700px) {
-        height: 50vh;
+        height: 55vh;
     }
 `;
 

@@ -31,14 +31,14 @@ export const Div = styled.div`
     }
     @media screen and (max-width: 400px) {
         width: 70%;
-        height: 60vh;
+        height: 55vh;
     }
     @media screen and (max-width: 300px) {
         width: 85%;
         height: 60vh;
     }
     @media screen and (min-height: 700px) {
-        height: 35vh;
+        height: 45vh;
     }
 `;
 
