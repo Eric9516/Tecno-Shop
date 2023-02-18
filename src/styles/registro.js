@@ -22,7 +22,7 @@ export const Div = styled.div`
         height: 55vh;
     }
     @media screen and (max-width: 960px) {
-        width: 50%;
+        width: 60%;
         height: 77vh;
     }
     @media screen and (max-width: 500px) {
@@ -36,6 +36,9 @@ export const Div = styled.div`
     @media screen and (max-width: 300px) {
         width: 85%;
         height: 75vh;
+    }
+    @media screen and (min-height: 700px) {
+        height: 50vh;
     }
 `;
 
