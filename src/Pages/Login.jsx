@@ -1,6 +1,6 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { useContext } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import firebase from "../Config/firebase";
@@ -24,11 +24,11 @@ const Login = () => {
                 console.log(userDocument);
             }
         } catch (error) {
-            if (error.code == "auth/wrong-password") setPassError("Contraseña incorrecta");
+            if (error.code === "auth/wrong-password") setPassError("Contraseña incorrecta");
             if (error.code !== "auth/wrong-password") setPassError("");
-            if (error.code == "auth/user-not-found") setEmailError("Email incorrecto");
+            if (error.code === "auth/user-not-found") setEmailError("Email incorrecto");
             if (error.code !== "auth/user-not-found") setEmailError("");
-            if (error.code == "auth/too-many-requests")
+            if (error.code === "auth/too-many-requests")
                 setPassError("Su cuenta ha sido temporalmente suspendida debido al ingreso erroneo de sus datos de inicio de sisión de forma repetida, intente nuevamente en 30 minutos");
         }
     };
