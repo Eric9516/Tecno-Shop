@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -20,21 +21,22 @@ const ModalData = ({ show, handleClose, handleShow }) => {
 
     const onSubmit = async (data) => {
         try {
-            const consulta = await firebase.firestore().doc(`datosUsuarios/${data.id}`).get(); //Preguntamos si los datos ya se encuentran actualizados en la base de datos
-            if (consulta) {
-                await firebase.firestore().collection("datosUsuarios").add({
-                    dni: data.dni,
-                    provincia: data.provincia,
-                    localidad: data.localidad,
-                    cod_postal: data.cod_postal,
-                    direccion: data.direccion,
-                    telefono: data.telefono,
-                    user_id: data.id,
-                });
-                console.log("datos agregados");
-            } else {
-                console.log("los datos ya se encuentran actualizados");
-            }
+            await firebase.firestore().collection("datosUsuarios").add({
+                dni: data.dni,
+                provincia: data.provincia,
+                localidad: data.localidad,
+                cod_postal: data.cod_postal,
+                direccion: data.direccion,
+                telefono: data.telefono,
+                user_id: data.id,
+            });
+            Swal.fire({
+                title: "<strong>Sus datos de han guardado exitosamente</strong>",
+                icon: "success",
+                showCloseButton: true,
+                focusConfirm: false,
+                confirmButtonText: '<i class="fa fa-thumbs-up"></i> Cerrar',
+            });
         } catch (error) {
             console.log(error.message);
             console.log(error.code);
