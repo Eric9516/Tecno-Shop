@@ -27,7 +27,7 @@ const Perfil = () => {
             <Form style={estilos.form}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" value={context.user.name} readOnly />
+                    <Form.Control type="text" value={context.user.name} readOnly autoFocus="off" />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Apellido</Form.Label>
@@ -50,6 +50,10 @@ const Perfil = () => {
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Localidad</Form.Label>
+                    <Form.Control type="text" readOnly />
+                </Form.Group>{" "}
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Dirección</Form.Label>
                     <Form.Control type="text" readOnly />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">

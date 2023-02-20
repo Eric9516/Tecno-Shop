@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const estilos = {
     boton: {
@@ -22,26 +23,24 @@ const ModalData = ({ show, handleClose, handleShow }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>DNI</Form.Label>
-                            <Form.Control type="email" autoFocus />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Provincia</Form.Label>
-                            <Form.Control type="email" autoFocus />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Localidad</Form.Label>
-                            <Form.Control type="email" autoFocus />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Código postal</Form.Label>
-                            <Form.Control type="email" autoFocus />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Número de teléfono</Form.Label>
-                            <Form.Control type="email" autoFocus />
-                        </Form.Group>
+                        <FloatingLabel controlId="floatingInput" label="DNI" className="mb-3">
+                            <Form.Control type="text" placeholder="name@example.com" />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingInput" label="Provincia" className="mb-3">
+                            <Form.Control type="text" placeholder="name@example.com" />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingInput" label="Localidad" className="mb-3">
+                            <Form.Control type="text" placeholder="name@example.com" />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingInput" label="Código postal" className="mb-3">
+                            <Form.Control type="text" placeholder="name@example.com" />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingInput" label="Dirección" className="mb-3">
+                            <Form.Control type="text" placeholder="name@example.com" />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingInput" label="Número de telefono" className="mb-3">
+                            <Form.Control type="text" placeholder="name@example.com" />
+                        </FloatingLabel>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
