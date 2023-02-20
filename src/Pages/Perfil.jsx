@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import ModalData from "../Components/ModalData";
+import firebase from "../Config/firebase";
 
 const estilos = {
     form: {
@@ -20,6 +21,30 @@ const Perfil = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [dni, setDni] = useState("");
+    const [provincia, setProvincia] = useState("");
+    const [localidad, setLocalidad] = useState("");
+    const [direccion, setDireccion] = useState("");
+    const [cod_postal, setCod_postal] = useState("");
+    const [telefono, setTelefono] = useState("");
+
+    useEffect(() => {
+        const peticion = async () => {
+            try {
+                const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", context.user.userId).get();
+                const data = consulta.docs[0].data();
+                setDni(data.dni);
+                setProvincia(data.provincia);
+                setLocalidad(data.localidad);
+                setDireccion(data.direccion);
+                setCod_postal(data.cod_postal);
+                setTelefono(data.telefono);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        peticion();
+    }, []);
 
     return (
         <>
@@ -42,27 +67,27 @@ const Perfil = () => {
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>DNI</Form.Label>
-                    <Form.Control type="text" readOnly />
+                    <Form.Control type="text" readOnly value={dni} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Provincia</Form.Label>
-                    <Form.Control type="text" readOnly />
+                    <Form.Control type="text" readOnly value={provincia} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Localidad</Form.Label>
-                    <Form.Control type="text" readOnly />
+                    <Form.Control type="text" readOnly value={localidad} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Dirección</Form.Label>
-                    <Form.Control type="text" readOnly />
+                    <Form.Control type="text" readOnly value={direccion} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Código postal</Form.Label>
-                    <Form.Control type="text" readOnly />
+                    <Form.Control type="text" readOnly value={cod_postal} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Número de teléfono</Form.Label>
-                    <Form.Control type="text" readOnly />
+                    <Form.Control type="text" readOnly value={telefono} />
                 </Form.Group>{" "}
                 <ModalData show={show} handleClose={handleClose} handleShow={handleShow} />
             </Form>
