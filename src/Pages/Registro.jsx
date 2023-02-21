@@ -12,6 +12,7 @@ const Registro = () => {
     const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const onSubmit = async (data) => {
+        console.log(new Date().getFullYear());
         try {
             const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email, data.password);
             Swal.fire({
@@ -41,6 +42,7 @@ const Registro = () => {
     const redireccionar = () => {
         navigate("/login");
     };
+
     return (
         <Div>
             <Titulo>
@@ -55,6 +57,16 @@ const Registro = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Input type="email" placeholder="Ingrese su Email" {...register("email", { required: true })} />
+                    <p>{emailError}</p>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Input
+                        type="text"
+                        placeholder="Fecha de nacimiento"
+                        {...register("edad", { required: true })}
+                        onChange={(e) => console.log(e.target.value)}
+                        onFocus={(e) => (e.target.type = "date")}
+                    />
                     <p>{emailError}</p>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">

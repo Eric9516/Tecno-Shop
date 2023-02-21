@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { useForm } from "react-hook-form";
 import firebase from "../Config/firebase";
+import { useParams } from "react-router-dom";
 
 const estilos = {
     boton: {
@@ -16,6 +17,7 @@ const estilos = {
 };
 
 const ModalData = ({ show, handleClose, handleShow }) => {
+    const { id } = useParams();
     const context = useContext(AuthContext);
     const { handleSubmit, register } = useForm();
 
@@ -28,7 +30,7 @@ const ModalData = ({ show, handleClose, handleShow }) => {
                 cod_postal: data.cod_postal,
                 direccion: data.direccion,
                 telefono: data.telefono,
-                user_id: data.id,
+                user_id: id,
             });
             Swal.fire({
                 title: "<strong>Sus datos de han guardado exitosamente</strong>",
@@ -72,7 +74,6 @@ const ModalData = ({ show, handleClose, handleShow }) => {
                         <FloatingLabel controlId="floatingInput" label="Número de telefono" className="mb-3">
                             <Form.Control type="text" placeholder="name@example.com" {...register("telefono", { required: true })} />
                         </FloatingLabel>
-                        <Form.Control type="text" value={context.user.userId} hidden {...register("id", { required: true })} />
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

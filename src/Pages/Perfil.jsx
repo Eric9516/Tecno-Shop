@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import ModalData from "../Components/ModalData";
 import firebase from "../Config/firebase";
+import { useParams } from "react-router-dom";
+import FotoPerfil from "../Components/FotoPerfil";
 
 const estilos = {
     form: {
@@ -17,6 +19,8 @@ const estilos = {
 };
 
 const Perfil = () => {
+    const { id } = useParams();
+
     const context = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -31,7 +35,7 @@ const Perfil = () => {
     useEffect(() => {
         const peticion = async () => {
             try {
-                const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", context.user.userId).get();
+                const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", id).get();
                 const data = consulta.docs[0].data();
                 setDni(data.dni);
                 setProvincia(data.provincia);
@@ -48,7 +52,7 @@ const Perfil = () => {
 
     return (
         <>
-            {<div></div> /*foto de perfil */}
+            <FotoPerfil />
             <Form style={estilos.form}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nombre</Form.Label>

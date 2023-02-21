@@ -23,7 +23,6 @@ const estilos = {
 const NavBar = () => {
     const context = useContext(AuthContext);
     let nombre = `${context.user.name} ${context.user.lastname}`;
-    const id = context.user.userId;
     return (
         <div>
             <Navbar bg="dark" variant="dark" style={estilos.navBar}>
@@ -42,7 +41,7 @@ const NavBar = () => {
                             </Nav.Link>
 
                             <NavDropdown title={nombre} id="nav-dropdown">
-                                <Nav.Link as={Link} style={estilos.link} to={`/perfil/${id}`}>
+                                <Nav.Link as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
                                     Mi perfil
                                 </Nav.Link>
                                 <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
@@ -54,7 +53,7 @@ const NavBar = () => {
                     {context.login && context.user.userId !== "wFVGMZPsPlPw7wKmKNuOsfNofdx1" && (
                         <>
                             <NavDropdown title={nombre} id="nav-dropdown">
-                                <Nav.Link as={Link} style={estilos.link} to="/perfil">
+                                <Nav.Link as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
                                     Mi perfil
                                 </Nav.Link>
                                 <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
