@@ -34,7 +34,7 @@ const NavBar = () => {
                         Home
                     </Nav.Link>
                     {context.login && <div></div>}
-                    {context.login && context.user.userId == "wFVGMZPsPlPw7wKmKNuOsfNofdx1" && (
+                    {context.login && context.user.userId == "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                         <>
                             <Nav.Link as={Link} to="/producto/alta">
                                 Agregar producto
@@ -50,7 +50,7 @@ const NavBar = () => {
                             </NavDropdown>
                         </>
                     )}
-                    {context.login && context.user.userId !== "wFVGMZPsPlPw7wKmKNuOsfNofdx1" && (
+                    {context.login && context.user.userId !== "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                         <>
                             <NavDropdown title={nombre} id="nav-dropdown">
                                 <Nav.Link as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>

@@ -12,9 +12,9 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
 const FotoPerfil = () => {
+    const context = useContext(AuthContext);
     const [dialogs, setDialogs] = useState(false);
     const [imgCrop, setImgCrop] = useState(false);
-    const context = useContext(AuthContext);
     const [storeImage, setStoreImage] = useState([]);
     const [image, setImage] = useState("");
 
@@ -35,20 +35,6 @@ const FotoPerfil = () => {
         setDialogs(false);
         window.location.reload();
     };
-
-    // const profileImageShow = storeImage.map((item) => item.imgCrop);
-    // console.log(storeImage[0].imgCrop);
-
-    // const submit = async () => {
-    //     try {
-    //         await firebase.firestore().collection("imagenesDePerfil").add({
-    //             img: profileImageShow[0],
-    //             id: context.user.userId,
-    //         });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
 
     useEffect(() => {
         const peticion = async () => {
