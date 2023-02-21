@@ -1,28 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import Avatar from "react-avatar-edit";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
+import firebase from "../Config/firebase";
+
+import img from "../img/perfil.jpg";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-const estilos = {
-    div: {
-        width: "200px",
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        marginBottom: "30px",
-    },
-};
-
 const FotoPerfil = () => {
     const [dialogs, setDialogs] = useState(false);
     const [imgCrop, setImgCrop] = useState(false);
+    const context = useContext(AuthContext);
     const [storeImage, setStoreImage] = useState([]);
+    const [image, setImage] = useState("");
 
     const onCrop = (view) => {
         setImgCrop(view);
@@ -32,12 +26,43 @@ const FotoPerfil = () => {
         setImgCrop(null);
     };
 
-    const saveImage = () => {
+    const saveImage = async () => {
         setStoreImage([...storeImage, { imgCrop }]);
+        await firebase.firestore().collection("imagenesDePerfil").add({
+            img: storeImage[0].imgCrop,
+            id: context.user.userId,
+        });
         setDialogs(false);
+        window.location.reload();
     };
 
-    const profileImageShow = storeImage.map((item) => item.imgCrop);
+    // const profileImageShow = storeImage.map((item) => item.imgCrop);
+    // console.log(storeImage[0].imgCrop);
+
+    // const submit = async () => {
+    //     try {
+    //         await firebase.firestore().collection("imagenesDePerfil").add({
+    //             img: profileImageShow[0],
+    //             id: context.user.userId,
+    //         });
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
+    useEffect(() => {
+        const peticion = async () => {
+            try {
+                const consulta = await firebase.firestore().collection("imagenesDePerfil").where("id", "==", context.user.userId).get();
+                const data = consulta.docs[0].data();
+                setImage(data.img);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        peticion();
+    }, []);
+
     return (
         <div>
             <div className="profile_img text-center p-4">
@@ -49,7 +74,7 @@ const FotoPerfil = () => {
                             borderRadius: "50%",
                             objectFix: "cover",
                         }}
-                        src={profileImageShow.length ? profileImageShow : "https://www.shutterstock.com/image-vector/default-avatar-profile-trendy-style-260nw-1759726295.jpg"}
+                        src={image.length ? image : img}
                         alt=""
                         onClick={() => setDialogs(true)}
                     />
