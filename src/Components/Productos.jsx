@@ -5,6 +5,10 @@ import firebase from "../Config/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import estilos from "../styles/estilosSpinner";
+import { Div, Input, DivBusqueda } from "../styles/estilosProductos";
+import { BsSearch } from "react-icons/bs";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const Productos = () => {
     const [resultado, setResultado] = useState([]);
@@ -46,8 +50,16 @@ const Productos = () => {
     } else {
         if (productosBuscados.length !== 0) {
             return (
-                <div>
-                    <input type="text" value={buscar} onChange={(e) => setBuscar(e.target.value)} />
+                <Div>
+                    <DivBusqueda>
+                        <InputGroup className="mb-3">
+                            <Input placeholder="Buscar productos" aria-label="Username" aria-describedby="basic-addon1" value={buscar} onChange={(e) => setBuscar(e.target.value)} />
+                            <InputGroup.Text>
+                                <BsSearch size={"1.5em"} />
+                            </InputGroup.Text>
+                        </InputGroup>
+                    </DivBusqueda>
+
                     <div className="contenedor_padre">
                         {productosBuscados.map((item) => {
                             return (
@@ -63,22 +75,26 @@ const Productos = () => {
                                                     Ver detalles
                                                 </Link>
                                             </Button>
-                                            <br />
-
-                                            <br />
-                                            <br />
                                         </Card.Body>
                                     </Card>
                                 </div>
                             );
                         })}
                     </div>
-                </div>
+                </Div>
             );
         } else {
             return (
-                <div>
-                    <input type="text" value={buscar} onChange={(e) => setBuscar(e.target.value)} />
+                <Div>
+                    <DivBusqueda>
+                        <InputGroup className="mb-3">
+                            <Input placeholder="Buscar productos" aria-label="Username" aria-describedby="basic-addon1" value={buscar} onChange={(e) => setBuscar(e.target.value)} />
+                            <InputGroup.Text>
+                                <BsSearch size={"1.5em"} />
+                            </InputGroup.Text>
+                        </InputGroup>
+                    </DivBusqueda>
+
                     <div className="contenedor_padre">
                         {resultado.map((item) => {
                             return (
@@ -95,6 +111,7 @@ const Productos = () => {
                                                             Ver detalles
                                                         </Link>
                                                     </Button>
+                                                    <br />
                                                     <br />
                                                     <Button variant="primary">
                                                         <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/editar/${item.id}`}>
@@ -123,16 +140,13 @@ const Productos = () => {
                                                     </Button>
                                                 </>
                                             )}
-
-                                            <br />
-                                            <br />
                                         </Card.Body>
                                     </Card>
                                 </div>
                             );
                         })}
                     </div>
-                </div>
+                </Div>
             );
         }
     }
