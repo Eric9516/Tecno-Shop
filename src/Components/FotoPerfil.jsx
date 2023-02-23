@@ -5,6 +5,7 @@ import Avatar from "react-avatar-edit";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import firebase from "../Config/firebase";
+import { AiFillCamera } from "react-icons/ai";
 
 import img from "../img/perfil.jpg";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -62,8 +63,12 @@ const FotoPerfil = () => {
                         }}
                         src={image.length ? image : img}
                         alt=""
-                        onClick={() => setDialogs(true)}
                     />
+
+                    <p style={{ cursor: "pointer" }} onClick={() => setDialogs(true)}>
+                        Cambiar imagen de perfil&nbsp;
+                        <AiFillCamera size={"1.5em"} />
+                    </p>
                     <Dialog
                         visible={dialogs}
                         header={() => (

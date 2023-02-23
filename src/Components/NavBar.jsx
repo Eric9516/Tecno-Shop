@@ -7,6 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 const estilos = {
     navBar: {
+        height: "70px",
         display: "flex",
         justifyContent: "space-evenly",
         marginBottom: "30px",

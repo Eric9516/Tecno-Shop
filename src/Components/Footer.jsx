@@ -6,6 +6,8 @@ const estilos = {
         height: "180px",
         backgroundColor: "#777",
         marginTop: "50px",
+        position: "relative",
+        bottom: "0",
     },
 };
 
