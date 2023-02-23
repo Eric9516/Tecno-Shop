@@ -14,4 +14,8 @@ export const Input = styled(Form.Control)`
 
 export const DivBusqueda = styled.div`
     width: 40%;
+
+    @media screen and (max-width: 960px) {
+        width: 65%;
+    }
 `;
