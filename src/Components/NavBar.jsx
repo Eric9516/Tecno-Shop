@@ -5,6 +5,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { MdComputer } from "react-icons/md";
 
 const estilos = {
     navBar: {
@@ -29,7 +30,7 @@ const NavBar = () => {
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={estilos.navBar}>
                 <Container>
                     <Navbar.Brand as={Link} to="/home">
-                        TecnoShop
+                        TecnoShop <MdComputer size={"1.5em"} />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
@@ -88,7 +89,6 @@ const NavBar = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-           
         </div>
     );
 };
