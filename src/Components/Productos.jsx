@@ -65,8 +65,10 @@ const Productos = () => {
                             {productosBuscados.map((item) => {
                                 return (
                                     <div key={item.id}>
-                                        <Card style={{ width: "14rem", minHeight: "500px" }}>
-                                            <Card.Img variant="top" src={item.data().image} />
+                                        <Card style={{ width: "14rem", minHeight: "400px" }}>
+                                            <div style={{ width: "100%", height: "250px" }}>
+                                                <Card.Img variant="top" src={item.data().image} />
+                                            </div>
                                             <Card.Body>
                                                 <Card.Title>🛒{item.data().name}</Card.Title>
                                                 <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
@@ -103,8 +105,10 @@ const Productos = () => {
                             {resultado.map((item) => {
                                 return (
                                     <div key={item.id}>
-                                        <Card style={{ width: "14rem", minHeight: "500px" }}>
-                                            <Card.Img variant="top" src={item.data().image} />
+                                        <Card style={{ width: "14rem", minHeight: "400px" }}>
+                                            <div style={{ width: "100%", height: "250px" }}>
+                                                <Card.Img variant="top" src={item.data().image} />
+                                            </div>
                                             <Card.Body>
                                                 <Card.Title>🛒{item.data().name}</Card.Title>
                                                 <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
