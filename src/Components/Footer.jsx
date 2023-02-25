@@ -3,11 +3,11 @@ import React from "react";
 const estilos = {
     div: {
         width: "100%",
-        height: "180px",
+        height: "250px",
         backgroundColor: "#777",
         marginTop: "50px",
         position: "relative",
-        bottom: "0",
+        bottom: "-110px",
     },
 };
 

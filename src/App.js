@@ -9,6 +9,7 @@ import ProductosMod from "./Pages/ProductosMod";
 import AuthProvider from "./Context/AuthContext";
 import Comprar from "./Pages/Compra";
 import Perfil from "./Pages/Perfil";
+import Footer from "./Components/Footer";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                     </Routes>
                 </AuthProvider>
             </Router>
+            <Footer />
         </div>
     );
 }

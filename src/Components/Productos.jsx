@@ -85,7 +85,6 @@ const Productos = () => {
                             })}
                         </div>
                     </Div>
-                    <Footer />
                 </div>
             );
         } else {
@@ -155,7 +154,6 @@ const Productos = () => {
                             })}
                         </div>
                     </Div>
-                    <Footer />
                 </div>
             );
         }
