@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import ModalImg from "../Components/ModalImg";
 
 const Detalle = () => {
+    const [show, setShow] = useState(false);
     const { id } = useParams();
     const [resultado, setResultado] = useState({});
     const navigate = useNavigate();
@@ -43,7 +45,7 @@ const Detalle = () => {
     return (
         <div className="contenedor_detalle">
             <Card style={{ width: "300px", margin: "0 auto" }}>
-                <Card.Img variant="top" src={resultado.image} />
+                <ModalImg show={show} img={resultado.image} />
                 <Card.Body>
                     <Card.Title>🛒{resultado.name}</Card.Title>
                     <Card.Text>▪ Precio: ${resultado.price}</Card.Text>

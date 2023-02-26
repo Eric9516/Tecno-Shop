@@ -65,7 +65,7 @@ const Productos = () => {
                             {productosBuscados.map((item) => {
                                 return (
                                     <div key={item.id}>
-                                        <Card style={{ width: "14rem", minHeight: "400px" }}>
+                                        <Card style={{ width: "14rem" }}>
                                             <div style={{ width: "100%", height: "250px" }}>
                                                 <Card.Img variant="top" src={item.data().image} />
                                             </div>
@@ -100,7 +100,7 @@ const Productos = () => {
                             </InputGroup>
                         </DivBusqueda>
 
-                        <div className="contenedor_padre">
+                        <div className="contenedor_padre" style={{ width: "80vw" }}>
                             {resultado.map((item) => {
                                 return (
                                     <div key={item.id}>
