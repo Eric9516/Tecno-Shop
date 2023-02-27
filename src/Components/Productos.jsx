@@ -15,11 +15,6 @@ const Productos = () => {
     const [loading, setLoading] = useState(true);
     const [buscar, setBuscar] = useState("");
     const context = useContext(AuthContext);
-    let primerLetra = buscar.substring(0, 1).toUpperCase();
-    let segundaLetra = buscar.substring(1).toLocaleLowerCase();
-    let palabra = primerLetra.concat(segundaLetra);
-    let buscando = resultado.filter((item) => item.data().name === palabra);
-    let productosBuscados = [...buscando];
 
     useEffect(() => {
         const response = async () => {
@@ -39,6 +34,13 @@ const Productos = () => {
         };
         response();
     }, []);
+
+    const buscando = resultado.filter((item) => {
+        if (item.data().name.toString().toLowerCase().includes(buscar.toLowerCase())) {
+            return item;
+        }
+    });
+    const productosBuscados = [...buscando];
 
     if (loading) {
         return (
