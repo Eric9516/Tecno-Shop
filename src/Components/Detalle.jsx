@@ -10,7 +10,7 @@ import { AuthContext } from "../Context/AuthContext";
 import ModalImg from "../Components/ModalImg";
 
 const Detalle = () => {
-    const [show, setShow] = useState(false);
+    const [show] = useState(false);
     const { id } = useParams();
     const [resultado, setResultado] = useState({});
     const navigate = useNavigate();

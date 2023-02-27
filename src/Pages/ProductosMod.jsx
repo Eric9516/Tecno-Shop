@@ -32,7 +32,7 @@ const ProductosMod = () => {
             }
         };
         peticion();
-    }, [id]);
+    });
 
     const onSubmit = async (data) => {
         try {

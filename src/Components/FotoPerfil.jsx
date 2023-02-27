@@ -48,7 +48,7 @@ const FotoPerfil = () => {
             }
         };
         peticion();
-    }, []);
+    });
 
     return (
         <div>

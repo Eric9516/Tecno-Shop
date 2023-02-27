@@ -48,7 +48,7 @@ const Perfil = () => {
             }
         };
         peticion();
-    }, []);
+    });
 
     return (
         <>

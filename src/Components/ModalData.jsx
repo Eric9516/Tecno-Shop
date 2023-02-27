@@ -4,8 +4,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
 import { useForm } from "react-hook-form";
 import firebase from "../Config/firebase";
 import { useParams } from "react-router-dom";
@@ -18,7 +16,6 @@ const estilos = {
 
 const ModalData = ({ show, handleClose, handleShow }) => {
     const { id } = useParams();
-    const context = useContext(AuthContext);
     const { handleSubmit, register } = useForm();
 
     const onSubmit = async (data) => {

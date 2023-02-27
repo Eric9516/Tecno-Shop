@@ -47,7 +47,7 @@ const NavBar = () => {
                             <Nav.Link as={Link} to="/home">
                                 Home
                             </Nav.Link>
-                            {context.login && context.user.userId == "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
+                            {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                                 <>
                                     <Nav.Link as={Link} to="/producto/alta">
                                         Agregar producto
