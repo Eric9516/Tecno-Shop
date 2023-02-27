@@ -60,7 +60,7 @@ const Login = () => {
                         <InputGroup className="mb-3">
                             <Input type={showPwd ? "text" : "password"} placeholder="Ingrese su contraseña" {...register("password")} />
                             <InputGroup.Text style={{ backgroundColor: "#385273" }}>
-                                {showPwd ? <AiFillEyeInvisible onClick={pass} color="#fff" /> : <AiFillEye onClick={pass} color="#fff" />}
+                                {showPwd ? <AiFillEye onClick={pass} color="#fff" /> : <AiFillEyeInvisible onClick={pass} color="#fff" />}
                             </InputGroup.Text>
                         </InputGroup>
                         <p>{passError}</p>
