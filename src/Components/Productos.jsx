@@ -7,7 +7,6 @@ import { AuthContext } from "../Context/AuthContext";
 import estilos from "../styles/estilosSpinner";
 import { Div, Input, DivBusqueda } from "../styles/estilosProductos";
 import { BsSearch } from "react-icons/bs";
-import Footer from "../Components/Footer";
 import InputGroup from "react-bootstrap/InputGroup";
 
 const Productos = () => {
@@ -50,7 +49,7 @@ const Productos = () => {
             </div>
         );
     } else {
-        if (productosBuscados.length) {
+        if (productosBuscados) {
             return (
                 <div>
                     <Div>
@@ -138,15 +137,6 @@ const Productos = () => {
                                                             </Link>
                                                         </Button>
                                                         <br />
-                                                    </>
-                                                )}
-                                                {!context.login && (
-                                                    <>
-                                                        <Button variant="primary">
-                                                            <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
-                                                                Ver detalles
-                                                            </Link>
-                                                        </Button>
                                                     </>
                                                 )}
                                             </Card.Body>
