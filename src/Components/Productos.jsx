@@ -8,6 +8,7 @@ import estilos from "../styles/estilosSpinner";
 import { Div, Input, DivBusqueda } from "../styles/estilosProductos";
 import { BsSearch } from "react-icons/bs";
 import InputGroup from "react-bootstrap/InputGroup";
+import Footer from "./Footer";
 
 const Productos = () => {
     const [resultado, setResultado] = useState([]);
@@ -35,9 +36,8 @@ const Productos = () => {
     }, []);
 
     const buscando = resultado.filter((item) => {
-        if (item.data().name.toString().toLowerCase().includes(buscar.toLowerCase())) {
-            return item;
-        }
+        const products = item.data().name.toString().toLowerCase().includes(buscar.toLowerCase());
+        return products;
     });
     const productosBuscados = [...buscando];
 
@@ -86,6 +86,7 @@ const Productos = () => {
                             })}
                         </div>
                     </Div>
+                    <Footer />
                 </div>
             );
         } else {

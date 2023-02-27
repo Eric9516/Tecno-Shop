@@ -7,6 +7,7 @@ export const DivFooter = styled.div`
     align-items: center;
     padding: 40px;
     background-color: #999;
+    margin-top: 50px;
 `;
 
 export const DivContenedor = styled.div`

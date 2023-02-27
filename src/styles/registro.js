@@ -3,13 +3,11 @@ import { FormControl, Form, Button } from "react-bootstrap";
 
 export const Div = styled.div`
     width: 30%;
-    height: 75vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top: 50px;
-    padding-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 15px;
@@ -26,24 +24,24 @@ export const Div = styled.div`
         height: 77vh;
     }
     @media screen and (max-width: 500px) {
-        width: 60%;
-        height: 75vh;
+        width: 85%;
     }
     @media screen and (max-width: 400px) {
-        width: 70%;
-        height: 75vh;
+        width: 85%;
+        height: 85vh;
+        margin-bottom: 20px;
     }
     @media screen and (max-width: 300px) {
         width: 85%;
         height: 75vh;
     }
     @media screen and (min-height: 700px) {
-        height: 55vh;
+        height: 60vh;
     }
 `;
 
 export const Formulario = styled(Form)`
-    width: 80%;
+    width: 85%;
 `;
 
 export const Input = styled(FormControl)`
@@ -67,11 +65,11 @@ export const Titulo = styled.div`
     height: 40%;
     display: flex;
     justify-content: center;
+    align-items: center;
 `;
 
 export const H2 = styled.h2`
     color: #0d6efd;
-    margin-bottom: 40px;
 
     @media screen and (min-width: 1600px) {
         //pantallas grandes
