@@ -10,36 +10,40 @@ import calculoEdad from "../Utils/calculoEdad";
 const Registro = () => {
     const [emailError, setEmailError] = useState("");
     const [passError, setPassError] = useState("");
+    const [edad, setEdad] = useState("");
     const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         const fecha = data.edad;
         const edad = calculoEdad(fecha);
-        console.log(edad)
-        try {
-            const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email, data.password);
-            Swal.fire({
-                title: "<strong>Sus datos de han registrado exitosamente</strong>",
-                icon: "success",
-                showCloseButton: true,
-                focusConfirm: false,
-                confirmButtonText: '<i class="fa fa-thumbs-up"></i> Cerrar',
-            });
-            navigate("/home");
-            if (responseUser.user.uid) {
-                await firebase.firestore().collection("usuarios").add({
-                    name: data.name,
-                    lastname: data.lastname,
-                    email: data.email,
-                    birthdate: data.edad,
-                    userId: responseUser.user.uid,
+        if (edad > 18) {
+            try {
+                const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email, data.password);
+                Swal.fire({
+                    title: "<strong>Sus datos de han registrado exitosamente</strong>",
+                    icon: "success",
+                    showCloseButton: true,
+                    focusConfirm: false,
+                    confirmButtonText: '<i class="fa fa-thumbs-up"></i> Cerrar',
                 });
+                navigate("/home");
+                if (responseUser.user.uid) {
+                    await firebase.firestore().collection("usuarios").add({
+                        name: data.name,
+                        lastname: data.lastname,
+                        email: data.email,
+                        birthdate: data.edad,
+                        userId: responseUser.user.uid,
+                    });
+                }
+            } catch (error) {
+                if (error.code === "auth/weak-password") setPassError("La contraseña debe contener al menos 6 caracteres");
+                if (error.code !== "auth/weak-password") setPassError("");
+                if (error.code === "auth/email-already-in-use") setEmailError("El email ingresado ya se encuentra en uso");
+                if (error.code !== "auth/email-already-in-use") setEmailError("");
             }
-        } catch (error) {
-            if (error.code === "auth/weak-password") setPassError("La contraseña debe contener al menos 6 caracteres");
-            if (error.code !== "auth/weak-password") setPassError("");
-            if (error.code === "auth/email-already-in-use") setEmailError("El email ingresado ya se encuentra en uso");
-            if (error.code !== "auth/email-already-in-use") setEmailError("");
+        } else {
+            setEdad("Debes tener mas de 18 años");
         }
     };
 
@@ -65,7 +69,7 @@ const Registro = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Input type="text" placeholder="Fecha de nacimiento" {...register("edad", { required: true })} onFocus={(e) => (e.target.type = "date")} />
-                    <p>{emailError}</p>
+                    <p>{edad}</p>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Input type="password" placeholder="Ingrese su contraseña" {...register("password", { required: true })} />

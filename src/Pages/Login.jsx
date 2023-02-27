@@ -29,7 +29,7 @@ const Login = () => {
             if (error.code === "auth/user-not-found") setEmailError("Email incorrecto");
             if (error.code !== "auth/user-not-found") setEmailError("");
             if (error.code === "auth/too-many-requests")
-                setPassError("Su cuenta ha sido temporalmente suspendida debido al ingreso erroneo de sus datos de inicio de sisión de forma repetida, intente nuevamente en 30 minutos");
+                setPassError("Su cuenta ha sido temporalmente suspendida debido al ingreso erroneo de sus datos de inicio de sisión de forma repetida, intente nuevamente mas tarde");
         }
     };
 
