@@ -1,15 +1,19 @@
 import { React, useState } from "react";
 import { useContext } from "react";
+import InputGroup from "react-bootstrap/InputGroup";
 import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import firebase from "../Config/firebase";
 import { AuthContext } from "../Context/AuthContext";
 import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/login";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
 
 const Login = () => {
     const [emailError, setEmailError] = useState("");
     const [passError, setPassError] = useState("");
+    const [showPwd, setShowPwd] = useState(false);
     const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const context = useContext(AuthContext);
@@ -36,27 +40,38 @@ const Login = () => {
     const redireccionar = () => {
         navigate("/registro");
     };
-    return (
-        <Div>
-            <Titulo>
-                <H2>BIENVENIDO</H2>
-            </Titulo>
-            <Formulario onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Input type="email" placeholder="Ingrese su email" {...register("email")} />
-                    <p>{emailError}</p>
-                </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Input type="password" placeholder="Ingrese su contraseña" {...register("password")} />
-                    <p>{passError}</p>
-                </Form.Group>
-                <Boton variant="primary" type="submit">
-                    Ingresar
-                </Boton>
-            </Formulario>
-            <P onClick={redireccionar}>¿No tienes cuenta? Registrate</P>
-        </Div>
+    const pass = () => {
+        showPwd ? setShowPwd(false) : setShowPwd(true);
+    };
+    return (
+        <>
+            <Div>
+                <Titulo>
+                    <H2>BIENVENIDO</H2>
+                </Titulo>
+                <Formulario onSubmit={handleSubmit(onSubmit)}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Input type="email" placeholder="Ingrese su email" {...register("email")} />
+                        <p>{emailError}</p>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <InputGroup className="mb-3">
+                            <Input type={showPwd ? "text" : "password"} placeholder="Ingrese su contraseña" {...register("password")} />
+                            <InputGroup.Text style={{ backgroundColor: "#385273" }}>
+                                {showPwd ? <AiFillEyeInvisible onClick={pass} color="#fff" /> : <AiFillEye onClick={pass} color="#fff" />}
+                            </InputGroup.Text>
+                        </InputGroup>
+                        <p>{passError}</p>
+                    </Form.Group>
+                    <Boton variant="primary" type="submit">
+                        Ingresar
+                    </Boton>
+                </Formulario>
+                <P onClick={redireccionar}>¿No tienes cuenta? Registrate</P>
+            </Div>
+        </>
     );
 };
 

@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import InputGroup from "react-bootstrap/InputGroup";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import firebase from "../Config/firebase";
 import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/registro";
 import calculoEdad from "../Utils/calculoEdad";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 const Registro = () => {
     const [emailError, setEmailError] = useState("");
     const [passError, setPassError] = useState("");
     const [edad, setEdad] = useState("");
+    const [showPwd, setShowPwd] = useState(false);
     const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const onSubmit = async (data) => {
@@ -51,6 +54,10 @@ const Registro = () => {
         navigate("/login");
     };
 
+    const pass = () => {
+        showPwd ? setShowPwd(false) : setShowPwd(true);
+    };
+
     return (
         <Div>
             <Titulo>
@@ -72,7 +79,12 @@ const Registro = () => {
                     <p>{edad}</p>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Input type="password" placeholder="Ingrese su contraseña" {...register("password", { required: true })} />
+                    <InputGroup className="mb-3">
+                        <Input type={showPwd ? "text" : "password"} placeholder="Ingrese su contraseña" {...register("password")} />
+                        <InputGroup.Text style={{ backgroundColor: "#385273" }}>
+                            {showPwd ? <AiFillEyeInvisible onClick={pass} color="#fff" /> : <AiFillEye onClick={pass} color="#fff" />}
+                        </InputGroup.Text>
+                    </InputGroup>
                     <p>{passError}</p>
                 </Form.Group>
                 <Boton variant="primary" type="submit">
