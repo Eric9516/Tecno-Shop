@@ -13,7 +13,9 @@ const Registro = () => {
     const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const onSubmit = async (data) => {
-        // console.log(new Date().getFullYear());
+        const fecha = data.edad;
+        const edad = calculoEdad(fecha);
+        console.log(edad)
         try {
             const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email, data.password);
             Swal.fire({
@@ -39,8 +41,6 @@ const Registro = () => {
             if (error.code === "auth/email-already-in-use") setEmailError("El email ingresado ya se encuentra en uso");
             if (error.code !== "auth/email-already-in-use") setEmailError("");
         }
-        const edad = data.edad;
-        console.log(calculoEdad(edad));
     };
 
     const redireccionar = () => {
