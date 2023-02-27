@@ -27,7 +27,7 @@ const NavBar = () => {
     let nombre = `${context.user.name} ${context.user.lastname}`;
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={estilos.navBar}>
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={estilos.navBar} id="nav">
                 <Container>
                     <Navbar.Brand as={Link} to="/home">
                         TecnoShop <MdComputer size={"1.5em"} />
