@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MdComputer } from "react-icons/md";
+import { NavLink, DropDown } from "../styles/navBar";
 
 const estilos = {
     navBar: {
@@ -16,9 +17,6 @@ const estilos = {
     },
     navBrand: {
         width: "60%",
-    },
-    link: {
-        color: "#000",
     },
 };
 
@@ -44,28 +42,28 @@ const NavBar = () => {
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link as={Link} to="/home">
+                            <NavLink as={Link} to="/home">
                                 Home
-                            </Nav.Link>
+                            </NavLink>
                             {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                                 <>
-                                    <Nav.Link as={Link} to="/producto/alta">
+                                    <NavLink as={Link} to="/producto/alta">
                                         Agregar producto
-                                    </Nav.Link>
+                                    </NavLink>
 
-                                    <NavDropdown title={nombre} id="nav-dropdown">
+                                    <DropDown title={nombre} id="nav-dropdown" menuVariant="dark" active>
                                         <NavDropdown.Item as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
                                             Mi perfil
                                         </NavDropdown.Item>
                                         <NavDropdown.Item as={Link} onClick={context.handlerLogOut} style={estilos.link}>
                                             Cerrar sessión
                                         </NavDropdown.Item>
-                                    </NavDropdown>
+                                    </DropDown>
                                 </>
                             )}
                             {context.login && context.user.userId !== "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                                 <>
-                                    <NavDropdown title={nombre} id="nav-dropdown">
+                                    <NavDropdown title={nombre} id="nav-dropdown" menuVariant="dark" active>
                                         <Nav.Link as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
                                             Mi perfil
                                         </Nav.Link>
@@ -77,12 +75,12 @@ const NavBar = () => {
                             )}
                             {!context.login && (
                                 <>
-                                    <Nav.Link as={Link} to="/login">
+                                    <NavLink as={Link} to="/login">
                                         Login
-                                    </Nav.Link>
-                                    <Nav.Link as={Link} to="/registro">
+                                    </NavLink>
+                                    <NavLink as={Link} to="/registro">
                                         Registro
-                                    </Nav.Link>
+                                    </NavLink>
                                 </>
                             )}
                         </Nav>

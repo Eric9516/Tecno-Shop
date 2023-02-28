@@ -6,7 +6,7 @@ export const DivFooter = styled.div`
     justify-content: space-evenly;
     align-items: center;
     padding: 40px;
-    background-color: #999;
+    background-color: #212529;
     margin-top: 50px;
 `;
 
@@ -24,6 +24,9 @@ export const DivContenedor = styled.div`
 
 export const Ul = styled.ul`
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 `;
 
 export const Redes = styled.div`
@@ -56,4 +59,9 @@ export const Div2 = styled.div`
 
 export const A = styled.a`
     text-decoration: none;
+    color: #fff;
+`;
+
+export const H5 = styled.h5`
+    color: #fff;
 `;
