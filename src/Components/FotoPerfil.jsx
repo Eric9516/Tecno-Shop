@@ -41,8 +41,9 @@ export const FotoPerfil = () => {
         const peticion = async () => {
             try {
                 const consulta = await firebase.firestore().collection("imagenesDePerfil").where("id", "==", context.user.userId).get();
-                const data = consulta.docs[0].data();
-                setImage(data.img);
+                // const data = consulta.docs[0].data();
+                // setImage(data.img);
+                // aca hay un problema
             } catch (error) {
                 console.log(error);
             }

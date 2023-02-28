@@ -6,43 +6,22 @@ import { ModalData } from "../Components/ModalData";
 import firebase from "../Config/firebase";
 import { useParams } from "react-router-dom";
 import { FotoPerfil } from "../Components/FotoPerfil";
-
-const estilos = {
-    form: {
-        width: "50%",
-        marginLeft: "auto",
-        marginRight: "auto",
-    },
-    boton: {
-        marginBottom: "10px",
-    },
-};
+import { estilos } from "../styles/estilosPerfil";
 
 export const Perfil = () => {
     const { id } = useParams();
-
     const context = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [dni, setDni] = useState("");
-    const [provincia, setProvincia] = useState("");
-    const [localidad, setLocalidad] = useState("");
-    const [direccion, setDireccion] = useState("");
-    const [cod_postal, setCod_postal] = useState("");
-    const [telefono, setTelefono] = useState("");
+    const [datos, setDatos] = useState({ dni: "", provincia: "", localidad: "", direccion: "", codigoPostal: "", telefono: "" });
 
     useEffect(() => {
         const peticion = async () => {
             try {
                 const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", id).get();
                 const data = consulta.docs[0].data();
-                setDni(data.dni);
-                setProvincia(data.provincia);
-                setLocalidad(data.localidad);
-                setDireccion(data.direccion);
-                setCod_postal(data.cod_postal);
-                setTelefono(data.telefono);
+                setDatos({ datos, dni: data.dni, provincia: data.provincia, localidad: data.localidad, direccion: data.direccion, codigoPostal: data.cod_postal, telefono: data.telefono });
             } catch (error) {
                 console.log(error);
             }
@@ -71,27 +50,27 @@ export const Perfil = () => {
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>DNI</Form.Label>
-                    <Form.Control type="text" readOnly value={dni} />
+                    <Form.Control type="text" readOnly value={datos.dni} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Provincia</Form.Label>
-                    <Form.Control type="text" readOnly value={provincia} />
+                    <Form.Control type="text" readOnly value={datos.provincia} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Localidad</Form.Label>
-                    <Form.Control type="text" readOnly value={localidad} />
+                    <Form.Control type="text" readOnly value={datos.localidad} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Dirección</Form.Label>
-                    <Form.Control type="text" readOnly value={direccion} />
+                    <Form.Control type="text" readOnly value={datos.direccion} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Código postal</Form.Label>
-                    <Form.Control type="text" readOnly value={cod_postal} />
+                    <Form.Control type="text" readOnly value={datos.codigoPostal} />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Número de teléfono</Form.Label>
-                    <Form.Control type="text" readOnly value={telefono} />
+                    <Form.Control type="text" readOnly value={datos.telefono} />
                 </Form.Group>{" "}
                 <ModalData show={show} handleClose={handleClose} handleShow={handleShow} />
             </Form>
