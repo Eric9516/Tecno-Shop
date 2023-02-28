@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import "../styles/estilos.css";
 import img from "../img/publicidades/publicidad.jpg";
 import img2 from "../img/publicidades/publicidad2.jpg";
+import img3 from "../img/publicidades/publicidad3.jpg";
 
 const Carrusel = () => {
     const [index, setIndex] = useState(0);
@@ -18,6 +19,9 @@ const Carrusel = () => {
             </Carousel.Item>
             <Carousel.Item>
                 <img className="d-block w-100" src={img2} alt="Second slide" />
+            </Carousel.Item>
+            <Carousel.Item>
+                <img className="d-block w-100" src={img3} alt="Second slide" />
             </Carousel.Item>
         </Carousel>
     );
