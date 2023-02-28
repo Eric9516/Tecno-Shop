@@ -8,9 +8,8 @@ import firebase from "../Config/firebase";
 import { AuthContext } from "../Context/AuthContext";
 import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/login";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
 
-const Login = () => {
+export const Login = () => {
     const [emailError, setEmailError] = useState("");
     const [passError, setPassError] = useState("");
     const [showPwd, setShowPwd] = useState(false);
@@ -74,5 +73,3 @@ const Login = () => {
         </>
     );
 };
-
-export default Login;

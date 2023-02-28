@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
-const ModalImg = (props) => {
+export const ModalImg = (props) => {
     const [show, setShow] = useState(false);
 
     return (
@@ -20,5 +20,3 @@ const ModalImg = (props) => {
         </>
     );
 };
-
-export default ModalImg;

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import ModalData from "../Components/ModalData";
+import { ModalData } from "../Components/ModalData";
 import firebase from "../Config/firebase";
 import { useParams } from "react-router-dom";
-import FotoPerfil from "../Components/FotoPerfil";
+import { FotoPerfil } from "../Components/FotoPerfil";
 
 const estilos = {
     form: {
@@ -18,7 +18,7 @@ const estilos = {
     },
 };
 
-const Perfil = () => {
+export const Perfil = () => {
     const { id } = useParams();
 
     const context = useContext(AuthContext);
@@ -98,5 +98,3 @@ const Perfil = () => {
         </>
     );
 };
-
-export default Perfil;

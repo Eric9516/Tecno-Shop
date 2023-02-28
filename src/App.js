@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import Registro from "./Pages/Registro";
-import Login from "./Pages/Login";
-import NavBar from "./Components/NavBar";
+import { Home } from "./Pages/Home";
+import { Registro } from "./Pages/Registro";
+import { Login } from "./Pages/Login";
+import { NavBar } from "./Components/NavBar";
 import Producto from "./Pages/Producto";
-import ProductosAlta from "./Pages/ProductosAlta";
-import ProductosMod from "./Pages/ProductosMod";
+import { ProductosAlta } from "./Pages/ProductosAlta";
+import { ProductosMod } from "./Pages/ProductosMod";
 import AuthProvider from "./Context/AuthContext";
-import Comprar from "./Pages/Compra";
-import Perfil from "./Pages/Perfil";
+import { Comprar } from "./Pages/Compra";
+import { Perfil } from "./Pages/Perfil";
 
 const App = () => {
     return (

@@ -1,6 +1,5 @@
 import React from "react";
-import Detalle from "../Components/Detalle";
-
+import { Detalle } from "../Components/Detalle";
 
 const Producto = () => {
     return (

@@ -42,7 +42,7 @@ const estilos = {
     },
 };
 
-const Comprar = () => {
+export const Comprar = () => {
     const [cantidad, setCantidad] = useState(1);
     const [pay, setPay] = useState("");
     const [nombre, setNombre] = useState("");
@@ -169,5 +169,3 @@ const Comprar = () => {
         </div>
     );
 };
-
-export default Comprar;

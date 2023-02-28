@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import firebase from "../Config/firebase";
 import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/registro";
-import calculoEdad from "../Utils/calculoEdad";
+import { calculoEdad } from "../Utils/calculoEdad";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
-const Registro = () => {
+export const Registro = () => {
     const [emailError, setEmailError] = useState("");
     const [passError, setPassError] = useState("");
     const [edad, setEdad] = useState("");
@@ -95,5 +95,3 @@ const Registro = () => {
         </Div>
     );
 };
-
-export default Registro;

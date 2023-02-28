@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import ModalImg from "../Components/ModalImg";
+import { ModalImg } from "../Components/ModalImg";
 import { Link } from "react-router-dom";
 
-const Detalle = () => {
+export const Detalle = () => {
     const [show] = useState(false);
     const { id } = useParams();
     const [resultado, setResultado] = useState({});
@@ -70,5 +70,3 @@ const Detalle = () => {
         </div>
     );
 };
-
-export default Detalle;

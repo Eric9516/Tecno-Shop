@@ -15,7 +15,7 @@ const estilos = {
     },
 };
 
-const ProductosMod = () => {
+export const ProductosMod = () => {
     const { id } = useParams();
     const { handleSubmit, register, setValue } = useForm();
     const navigate = useNavigate();
@@ -81,5 +81,3 @@ const ProductosMod = () => {
         </div>
     );
 };
-
-export default ProductosMod;

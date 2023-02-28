@@ -1,8 +1,8 @@
 import React from "react";
-import Carrusel from "../Components/Carrusel";
-import Productos from "../Components/Productos";
+import { Carrusel } from "../Components/Carrusel";
+import { Productos } from "../Components/Productos";
 
-const Home = () => {
+export const Home = () => {
     return (
         <div>
             <Carrusel />
@@ -10,5 +10,3 @@ const Home = () => {
         </div>
     );
 };
-
-export default Home;

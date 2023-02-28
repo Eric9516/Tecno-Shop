@@ -12,7 +12,7 @@ const estilos = {
     },
 };
 
-const ProductosAlta = () => {
+export const ProductosAlta = () => {
     const { handleSubmit, register } = useForm();
     const navigate = useNavigate();
     const onSubmit = async (data) => {
@@ -49,5 +49,3 @@ const ProductosAlta = () => {
         </div>
     );
 };
-
-export default ProductosAlta;

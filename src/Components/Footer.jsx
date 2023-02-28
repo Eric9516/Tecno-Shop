@@ -4,7 +4,7 @@ import { RiWhatsappFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { A, Div1, Div2, DivContenedor, DivFooter, Redes, Ul, H5 } from "../styles/StyledFooter";
 
-const Footer = () => {
+export const Footer = () => {
     return (
         <>
             <DivFooter id="footer">
@@ -58,5 +58,3 @@ const Footer = () => {
         </>
     );
 };
-
-export default Footer;

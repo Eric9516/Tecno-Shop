@@ -20,7 +20,7 @@ const estilos = {
     },
 };
 
-const NavBar = () => {
+export const NavBar = () => {
     const context = useContext(AuthContext);
     let nombre = `${context.user.name} ${context.user.lastname}`;
     return (
@@ -90,5 +90,3 @@ const NavBar = () => {
         </div>
     );
 };
-
-export default NavBar;

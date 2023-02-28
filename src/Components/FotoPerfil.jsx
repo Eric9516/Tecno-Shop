@@ -12,7 +12,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-const FotoPerfil = () => {
+export const FotoPerfil = () => {
     const context = useContext(AuthContext);
     const [dialogs, setDialogs] = useState(false);
     const [imgCrop, setImgCrop] = useState(false);
@@ -93,5 +93,3 @@ const FotoPerfil = () => {
         </div>
     );
 };
-
-export default FotoPerfil;

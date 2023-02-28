@@ -14,7 +14,7 @@ const estilos = {
     },
 };
 
-const ModalData = ({ show, handleClose, handleShow }) => {
+export const ModalData = ({ show, handleClose, handleShow }) => {
     const { id } = useParams();
     const { handleSubmit, register } = useForm();
 
@@ -82,5 +82,3 @@ const ModalData = ({ show, handleClose, handleShow }) => {
         </>
     );
 };
-
-export default ModalData;

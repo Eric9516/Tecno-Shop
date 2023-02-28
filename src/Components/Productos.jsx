@@ -6,28 +6,24 @@ import estilos from "../styles/estilosSpinner";
 import { Div, Input, DivBusqueda } from "../styles/estilosProductos";
 import { BsSearch } from "react-icons/bs";
 import InputGroup from "react-bootstrap/InputGroup";
-import Footer from "./Footer";
+import { Footer } from "./Footer";
 
-const Productos = () => {
+export const Productos = () => {
     const [resultado, setResultado] = useState([]);
     const [loading, setLoading] = useState(true);
     const [buscar, setBuscar] = useState("");
 
     useEffect(() => {
         const response = async () => {
-            try {
-                firebase
-                    .firestore()
-                    .collection("productos")
-                    .get()
-                    .then((querySnapshot) => {
-                        const datos = querySnapshot.docs;
-                        setResultado(datos);
-                        setLoading(false);
-                    });
-            } catch (e) {
-                console.log(e);
-            }
+            firebase
+                .firestore()
+                .collection("productos")
+                .get()
+                .then((querySnapshot) => {
+                    const datos = querySnapshot.docs;
+                    setResultado(datos);
+                    setLoading(false);
+                });
         };
         response();
     }, []);
@@ -46,9 +42,8 @@ const Productos = () => {
             </div>
         );
     } else {
-        if (productosBuscados) {
-            return (
-                <>
+        return (
+            <>
                 <Div>
                     <DivBusqueda>
                         <InputGroup className="mb-3">
@@ -58,6 +53,7 @@ const Productos = () => {
                             </InputGroup.Text>
                         </InputGroup>
                     </DivBusqueda>
+
                     <div className="contenedor_padre">
                         {productosBuscados.map((item) => {
                             return (
@@ -69,7 +65,6 @@ const Productos = () => {
                                         <Card.Body>
                                             <Card.Title>🛒{item.data().name}</Card.Title>
                                             <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
-
                                             <Button variant="primary">
                                                 <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
                                                     Ver detalles
@@ -82,14 +77,9 @@ const Productos = () => {
                             );
                         })}
                     </div>
-
                 </Div>
-                    <Footer />
-                </>
-                
-            );
-        }
+                <Footer />
+            </>
+        );
     }
 };
-
-export default Productos;
