@@ -23,3 +23,15 @@ export const DropDown = styled(NavDropdown)`
         background-color: #61dafb;
     }
 `;
+
+export const estilos = {
+    navBar: {
+        paddingTop: "15px",
+        paddingBottom: "15px",
+        marginBottom: "30px",
+        // paddingLeft: "30px",
+    },
+    navBrand: {
+        width: "60%",
+    },
+};
