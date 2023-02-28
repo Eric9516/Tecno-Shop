@@ -63,14 +63,14 @@ const NavBar = () => {
                             )}
                             {context.login && context.user.userId !== "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                                 <>
-                                    <NavDropdown title={nombre} id="nav-dropdown" menuVariant="dark" active>
+                                    <DropDown title={nombre} id="nav-dropdown" menuVariant="dark" active>
                                         <Nav.Link as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
                                             Mi perfil
                                         </Nav.Link>
                                         <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
                                             Cerrar sessión
                                         </Nav.Link>
-                                    </NavDropdown>
+                                    </DropDown>
                                 </>
                             )}
                             {!context.login && (

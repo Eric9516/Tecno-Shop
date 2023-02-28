@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Spinner } from "react-bootstrap";
 import firebase from "../Config/firebase";
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
 import estilos from "../styles/estilosSpinner";
 import { Div, Input, DivBusqueda } from "../styles/estilosProductos";
 import { BsSearch } from "react-icons/bs";
@@ -14,7 +12,6 @@ const Productos = () => {
     const [resultado, setResultado] = useState([]);
     const [loading, setLoading] = useState(true);
     const [buscar, setBuscar] = useState("");
-    const context = useContext(AuthContext);
 
     useEffect(() => {
         const response = async () => {
@@ -51,103 +48,45 @@ const Productos = () => {
     } else {
         if (productosBuscados) {
             return (
-                <div>
-                    <Div>
-                        <DivBusqueda>
-                            <InputGroup className="mb-3">
-                                <Input placeholder="Buscar productos" aria-label="Username" aria-describedby="basic-addon1" value={buscar} onChange={(e) => setBuscar(e.target.value)} />
-                                <InputGroup.Text>
-                                    <BsSearch size={"1.5em"} />
-                                </InputGroup.Text>
-                            </InputGroup>
-                        </DivBusqueda>
+                <>
+                <Div>
+                    <DivBusqueda>
+                        <InputGroup className="mb-3">
+                            <Input placeholder="Buscar productos" aria-label="Username" aria-describedby="basic-addon1" value={buscar} onChange={(e) => setBuscar(e.target.value)} />
+                            <InputGroup.Text>
+                                <BsSearch size={"1.5em"} />
+                            </InputGroup.Text>
+                        </InputGroup>
+                    </DivBusqueda>
+                    <div className="contenedor_padre">
+                        {productosBuscados.map((item) => {
+                            return (
+                                <div key={item.id}>
+                                    <Card style={{ width: "14rem", minHeight: "450px" }}>
+                                        <div style={{ width: "100%", height: "250px" }}>
+                                            <Card.Img variant="top" src={item.data().image} />
+                                        </div>
+                                        <Card.Body>
+                                            <Card.Title>🛒{item.data().name}</Card.Title>
+                                            <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
 
-                        <div className="contenedor_padre">
-                            {productosBuscados.map((item) => {
-                                return (
-                                    <div key={item.id}>
-                                        <Card style={{ width: "14rem" }}>
-                                            <div style={{ width: "100%", height: "250px" }}>
-                                                <Card.Img variant="top" src={item.data().image} />
-                                            </div>
-                                            <Card.Body>
-                                                <Card.Title>🛒{item.data().name}</Card.Title>
-                                                <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
+                                            <Button variant="primary">
+                                                <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
+                                                    Ver detalles
+                                                </Link>
+                                            </Button>
+                                            <br />
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                            );
+                        })}
+                    </div>
 
-                                                <Button variant="primary">
-                                                    <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
-                                                        Ver detalles
-                                                    </Link>
-                                                </Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </Div>
+                </Div>
                     <Footer />
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <Div>
-                        <DivBusqueda>
-                            <InputGroup className="mb-3">
-                                <Input placeholder="Buscar productos" aria-label="Username" aria-describedby="basic-addon1" value={buscar} onChange={(e) => setBuscar(e.target.value)} />
-                                <InputGroup.Text>
-                                    <BsSearch size={"1.5em"} />
-                                </InputGroup.Text>
-                            </InputGroup>
-                        </DivBusqueda>
-
-                        <div className="contenedor_padre" style={{ width: "80vw" }}>
-                            {resultado.map((item) => {
-                                return (
-                                    <div key={item.id}>
-                                        <Card style={{ width: "14rem", minHeight: "400px" }}>
-                                            <div style={{ width: "100%", height: "250px" }}>
-                                                <Card.Img variant="top" src={item.data().image} />
-                                            </div>
-                                            <Card.Body>
-                                                <Card.Title>🛒{item.data().name}</Card.Title>
-                                                <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
-                                                {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
-                                                    <>
-                                                        <Button variant="primary">
-                                                            <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
-                                                                Ver detalles
-                                                            </Link>
-                                                        </Button>
-                                                        <br />
-                                                        <br />
-                                                        <Button variant="primary">
-                                                            <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/editar/${item.id}`}>
-                                                                Editar
-                                                            </Link>
-                                                        </Button>
-                                                        <br />
-                                                    </>
-                                                )}
-                                                {context.login && context.user.userId !== "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
-                                                    <>
-                                                        <Button variant="primary">
-                                                            <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
-                                                                Ver detalles
-                                                            </Link>
-                                                        </Button>
-                                                        <br />
-                                                    </>
-                                                )}
-                                            </Card.Body>
-                                        </Card>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </Div>
-                </div>
+                </>
+                
             );
         }
     }

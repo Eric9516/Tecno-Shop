@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import ModalImg from "../Components/ModalImg";
+import { Link } from "react-router-dom";
 
 const Detalle = () => {
     const [show] = useState(false);
@@ -53,6 +54,17 @@ const Detalle = () => {
                     <Button variant="primary" onClick={handlerBuy}>
                         Comprar
                     </Button>
+                    {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
+                        <>
+                            <br />
+                            <br />
+                            <Button variant="primary">
+                                <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/editar/${id}`}>
+                                    Editar
+                                </Link>
+                            </Button>
+                        </>
+                    )}
                 </Card.Body>
             </Card>
         </div>
