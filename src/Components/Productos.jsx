@@ -23,7 +23,7 @@ export const Productos = () => {
                 .orderBy("name", "asc")
                 .get()
                 .then((querySnapshot) => {
-                    const datos = querySnapshot.docs.map((datos) => datos.data());
+                    const datos = querySnapshot.docs;
                     const otrosDatos = querySnapshot.docs[querySnapshot.docs.length - 1];
                     setResultado(datos);
                     setMasDatos(otrosDatos);
@@ -34,7 +34,7 @@ export const Productos = () => {
     }, []);
 
     const buscando = resultado.filter((item) => {
-        const products = item.name.toString().toLowerCase().includes(buscar.toLowerCase());
+        const products = item.data().name.toString().toLowerCase().includes(buscar.toLowerCase());
         return products;
     });
     const productosBuscados = [...buscando];
@@ -48,7 +48,7 @@ export const Productos = () => {
             .limit(4)
             .get()
             .then((querySnapshot) => {
-                const datos = querySnapshot.docs.map((datos) => datos.data());
+                const datos = querySnapshot.docs;
                 const otrosDatos = querySnapshot.docs[querySnapshot.docs.length - 1];
                 setResultado((resultado) => [...resultado, ...datos]);
                 setMasDatos(otrosDatos);
@@ -81,11 +81,11 @@ export const Productos = () => {
                                 <div key={item.id}>
                                     <Card style={{ width: "14rem", minHeight: "450px" }}>
                                         <div style={{ width: "100%", height: "250px" }}>
-                                            <Card.Img variant="top" src={item.image} />
+                                            <Card.Img variant="top" src={item.data().image} />
                                         </div>
                                         <Card.Body>
-                                            <Card.Title>🛒{item.name}</Card.Title>
-                                            <Card.Text>▪ Precio: ${item.price}</Card.Text>
+                                            <Card.Title>🛒{item.data().name}</Card.Title>
+                                            <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
                                             <Button variant="primary">
                                                 <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
                                                     Ver detalles
