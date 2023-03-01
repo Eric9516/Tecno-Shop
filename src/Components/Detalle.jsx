@@ -16,6 +16,7 @@ export const Detalle = () => {
     const [resultado, setResultado] = useState({});
     const navigate = useNavigate();
     const context = useContext(AuthContext);
+    
     useEffect(() => {
         const peticion = async () => {
             try {

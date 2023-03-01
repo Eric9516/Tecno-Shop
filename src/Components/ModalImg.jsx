@@ -14,7 +14,7 @@ export const ModalImg = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <img src={props.img} style={{ width: "100%" }} alt="imagen del producto" />
-                    {/* aca va a ir un carrusel con varias imagenes de los productos */}
+                    {/* aca va a ir un carrusel con varias imagenes de los productos (ver swiper) */}
                 </Modal.Body>
             </Modal>
         </>

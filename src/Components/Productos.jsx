@@ -12,16 +12,21 @@ export const Productos = () => {
     const [resultado, setResultado] = useState([]);
     const [loading, setLoading] = useState(true);
     const [buscar, setBuscar] = useState("");
+    const [masDatos, setMasDatos] = useState();
 
     useEffect(() => {
         const response = async () => {
             firebase
                 .firestore()
                 .collection("productos")
+                .limit(4)
+                .orderBy("name", "asc")
                 .get()
                 .then((querySnapshot) => {
-                    const datos = querySnapshot.docs;
+                    const datos = querySnapshot.docs.map((datos) => datos.data());
+                    const otrosDatos = querySnapshot.docs[querySnapshot.docs.length - 1];
                     setResultado(datos);
+                    setMasDatos(otrosDatos);
                     setLoading(false);
                 });
         };
@@ -29,10 +34,26 @@ export const Productos = () => {
     }, []);
 
     const buscando = resultado.filter((item) => {
-        const products = item.data().name.toString().toLowerCase().includes(buscar.toLowerCase());
+        const products = item.name.toString().toLowerCase().includes(buscar.toLowerCase());
         return products;
     });
     const productosBuscados = [...buscando];
+
+    const fetchMore = () => {
+        firebase
+            .firestore()
+            .collection("productos")
+            .orderBy("name", "asc")
+            .startAfter(masDatos)
+            .limit(4)
+            .get()
+            .then((querySnapshot) => {
+                const datos = querySnapshot.docs.map((datos) => datos.data());
+                const otrosDatos = querySnapshot.docs[querySnapshot.docs.length - 1];
+                setResultado((resultado) => [...resultado, ...datos]);
+                setMasDatos(otrosDatos);
+            });
+    };
 
     if (loading) {
         return (
@@ -60,11 +81,11 @@ export const Productos = () => {
                                 <div key={item.id}>
                                     <Card style={{ width: "14rem", minHeight: "450px" }}>
                                         <div style={{ width: "100%", height: "250px" }}>
-                                            <Card.Img variant="top" src={item.data().image} />
+                                            <Card.Img variant="top" src={item.image} />
                                         </div>
                                         <Card.Body>
-                                            <Card.Title>🛒{item.data().name}</Card.Title>
-                                            <Card.Text>▪ Precio: ${item.data().price}</Card.Text>
+                                            <Card.Title>🛒{item.name}</Card.Title>
+                                            <Card.Text>▪ Precio: ${item.price}</Card.Text>
                                             <Button variant="primary">
                                                 <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/${item.id}`}>
                                                     Ver detalles
@@ -77,6 +98,7 @@ export const Productos = () => {
                             );
                         })}
                     </div>
+                    <Button onClick={fetchMore}>Mostrar mas</Button>
                 </Div>
                 <Footer />
             </>
