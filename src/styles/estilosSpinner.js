@@ -1,4 +1,4 @@
-const estilos = {
+export const estiloSpinner = {
     spinner: {
         width: "100%",
         height: "60vh",
@@ -9,5 +9,3 @@ const estilos = {
         paddingTop: "50px",
     },
 };
-
-export default estilos;

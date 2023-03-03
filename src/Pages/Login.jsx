@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import firebase from "../Config/firebase";
 import { AuthContext } from "../Context/AuthContext";
-import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/login";
+import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/StyledLogin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export const Login = () => {

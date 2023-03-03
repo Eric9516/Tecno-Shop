@@ -3,14 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import firebase from "../Config/firebase";
-
-const estilos = {
-    form: {
-        width: "50%",
-        marginLeft: "auto",
-        marginRight: "auto",
-    },
-};
+import { estilosProdAlta } from "../styles/productosAlta";
 
 export const ProductosAlta = () => {
     const { handleSubmit, register } = useForm();
@@ -25,7 +18,7 @@ export const ProductosAlta = () => {
     };
     return (
         <div>
-            <Form style={estilos.form} onSubmit={handleSubmit(onSubmit)}>
+            <Form style={estilosProdAlta.form} onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control type="text" {...register("name", { required: true })} />

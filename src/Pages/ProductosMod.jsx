@@ -3,17 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import firebase from "../Config/firebase";
-
-const estilos = {
-    form: {
-        width: "50%",
-        marginLeft: "auto",
-        marginRight: "auto",
-    },
-    boton: {
-        marginRight: "10px",
-    },
-};
+import { estilosProdMod } from "../styles/estilosProdMod";
 
 export const ProductosMod = () => {
     const { id } = useParams();
@@ -54,7 +44,7 @@ export const ProductosMod = () => {
 
     return (
         <div>
-            <Form style={estilos.form} onSubmit={handleSubmit(onSubmit)}>
+            <Form style={estilosProdMod.form} onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control type="text" {...register("name", { required: true })} />
@@ -71,7 +61,7 @@ export const ProductosMod = () => {
                     <Form.Label>Imagen</Form.Label>
                     <Form.Control type="text" {...register("image", { required: true })} />
                 </Form.Group>
-                <Button variant="primary" type="submit" style={estilos.boton}>
+                <Button variant="primary" type="submit" style={estilosProdMod.boton}>
                     Guardar
                 </Button>
                 <Button variant="danger" onClick={deleteProduct}>

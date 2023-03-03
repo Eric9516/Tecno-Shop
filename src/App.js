@@ -3,7 +3,7 @@ import { Home } from "./Pages/Home";
 import { Registro } from "./Pages/Registro";
 import { Login } from "./Pages/Login";
 import { NavBar } from "./Components/NavBar";
-import Producto from "./Pages/Producto";
+import VerDetalle from "./Pages/VerDetalle";
 import { ProductosAlta } from "./Pages/ProductosAlta";
 import { ProductosMod } from "./Pages/ProductosMod";
 import AuthProvider from "./Context/AuthContext";
@@ -23,7 +23,7 @@ const App = () => {
                         <Route path="/login" element={<Login />} />
                         <Route path="/perfil/:id" element={<Perfil />} />
                         <Route path="/registro" element={<Registro />} />
-                        <Route path="/producto/:id" element={<Producto />} />
+                        <Route path="/producto/:id" element={<VerDetalle />} />
                         <Route path="/producto/alta" element={<ProductosAlta />} />
                         <Route path="/producto/editar/:id" element={<ProductosMod />} />
                     </Routes>

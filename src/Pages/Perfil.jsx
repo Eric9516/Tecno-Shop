@@ -6,7 +6,7 @@ import { ModalData } from "../Components/ModalData";
 import firebase from "../Config/firebase";
 import { useParams } from "react-router-dom";
 import { FotoPerfil } from "../Components/FotoPerfil";
-import { estilos } from "../styles/estilosPerfil";
+import { estilosPerfil } from "../styles/estilosPerfil";
 
 export const Perfil = () => {
     const { id } = useParams();
@@ -32,7 +32,7 @@ export const Perfil = () => {
     return (
         <>
             <FotoPerfil />
-            <Form style={estilos.form}>
+            <Form style={estilosPerfil.form}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control type="text" value={context.user.name} readOnly autoFocus="off" />

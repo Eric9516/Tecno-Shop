@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MdComputer } from "react-icons/md";
-import { NavLink, DropDown, estilos } from "../styles/navBar";
+import { NavLink, DropDown, estilos } from "../styles/StyledNavBar";
 
 export const NavBar = () => {
     const context = useContext(AuthContext);
