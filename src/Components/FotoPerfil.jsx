@@ -74,7 +74,7 @@ export const FotoPerfil = () => {
                         visible={dialogs}
                         header={() => (
                             <p htmlFor="" className="text-2x1 font-semibold textColor">
-                                Update Profile
+                                Foto de perfil
                             </p>
                         )}
                         onHide={() => setDialogs(false)}
@@ -84,7 +84,7 @@ export const FotoPerfil = () => {
                                 <div className="flex justify-content-around w-12 mt-4">
                                     <Avatar width={400} height={300} onClose={onClose} onCrop={onCrop} />
 
-                                    <Button label="Save" icon="pi pi-check" onClick={saveImage}></Button>
+                                    <Button label="Guardar" icon="pi pi-check" onClick={saveImage}></Button>
                                 </div>
                             </div>
                         </div>
