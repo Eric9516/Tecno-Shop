@@ -29,7 +29,7 @@ export const Perfil = () => {
         peticion();
     });
 
-    return (
+    return ( 
         <>
             <FotoPerfil />
             <Form style={estilosPerfil.form}>
@@ -40,9 +40,6 @@ export const Perfil = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Apellido</Form.Label>
                     <Form.Control type="text" value={context.user.lastname} readOnly />
-                </Form.Group>{" "}
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control type="text" value={context.user.userId} readOnly hidden />
                 </Form.Group>{" "}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email</Form.Label>

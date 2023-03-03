@@ -17,7 +17,7 @@ export const Productos = () => {
             firebase
                 .firestore()
                 .collection("productos")
-                .limit(12)
+                .limit(8)
                 .orderBy("name", "asc")
                 .get()
                 .then((querySnapshot) => {
@@ -43,7 +43,7 @@ export const Productos = () => {
             .collection("productos")
             .orderBy("name", "asc")
             .startAfter(masDatos)
-            .limit(12)
+            .limit(8)
             .get()
             .then((querySnapshot) => {
                 const datos = querySnapshot.docs;
