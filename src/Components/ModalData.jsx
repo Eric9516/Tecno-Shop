@@ -30,7 +30,7 @@ export const ModalData = ({ show, handleClose, handleShow }) => {
                 user_id: id,
             });
             Swal.fire({
-                title: "<strong>Sus datos de han guardado exitosamente</strong>",
+                title: "<strong>Sus datos se han guardado exitosamente</strong>",
                 icon: "success",
                 showCloseButton: true,
                 focusConfirm: false,

@@ -9,6 +9,7 @@ import { ProductosMod } from "./Pages/ProductosMod";
 import AuthProvider from "./Context/AuthContext";
 import { Comprar } from "./Pages/Compra";
 import { Perfil } from "./Pages/Perfil";
+import { Carrito } from "./Pages/Carrito";
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
                         <Route path="/comprar/:id" element={<Comprar />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/perfil/:id" element={<Perfil />} />
+                        <Route path="/carrito/:id" element={<Carrito />} />
                         <Route path="/registro" element={<Registro />} />
                         <Route path="/producto/:id" element={<VerDetalle />} />
                         <Route path="/producto/alta" element={<ProductosAlta />} />

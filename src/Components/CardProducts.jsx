@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaCartPlus } from "react-icons/fa";
 import { Button, Card } from "react-bootstrap";
 
 export const CardProducts = ({ item }) => {
@@ -16,6 +17,9 @@ export const CardProducts = ({ item }) => {
                             Ver detalles
                         </Link>
                     </Button>
+                    <Link to={`/carrito/${item.id}`}>
+                        <FaCartPlus size={"1.5em"} style={{ marginLeft: "20px" }} />
+                    </Link>
                     <br />
                 </Card.Body>
             </Card>

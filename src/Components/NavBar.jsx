@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MdComputer } from "react-icons/md";
-import { NavLink, DropDown, estilos } from "../styles/StyledNavBar";
+import { NavLink, DropDown, estilos, BsCart3Icon } from "../styles/StyledNavBar";
 
 export const NavBar = () => {
     const context = useContext(AuthContext);
@@ -38,7 +38,9 @@ export const NavBar = () => {
                                     <NavLink as={Link} to="/producto/alta">
                                         Agregar producto
                                     </NavLink>
-
+                                    <Nav.Link as={Link} to="/carrito">
+                                        <BsCart3Icon />
+                                    </Nav.Link>
                                     <DropDown title={nombre} id="nav-dropdown" menuVariant="dark" active>
                                         <NavDropdown.Item as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
                                             Mi perfil
@@ -51,6 +53,9 @@ export const NavBar = () => {
                             )}
                             {context.login && context.user.userId !== "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                                 <>
+                                    <Nav.Link as={Link} to="/carrito">
+                                        <BsCart3Icon />
+                                    </Nav.Link>
                                     <DropDown title={nombre} id="nav-dropdown" menuVariant="dark" active>
                                         <Nav.Link as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
                                             Mi perfil
@@ -58,7 +63,7 @@ export const NavBar = () => {
                                         <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
                                             Cerrar sessión
                                         </Nav.Link>
-                                    </DropDown>
+                                    </DropDown>{" "}
                                 </>
                             )}
                             {!context.login && (
