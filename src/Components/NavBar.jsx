@@ -33,12 +33,7 @@ export const NavBar = () => {
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            <Form className="d-flex">
-                                <Form.Control type="search" placeholder="Buscar producto" className="me-2" aria-label="Search" />
-                                <Button variant="outline-success">
-                                    <BsSearch />
-                                </Button>
-                            </Form>
+                            
                             <NavLink as={Link} to="/home">
                                 Home
                             </NavLink>
