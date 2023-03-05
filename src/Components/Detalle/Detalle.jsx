@@ -5,11 +5,9 @@ import { Card } from "react-bootstrap";
 import firebase from "../../Config/firebase";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthContext";
-import { ModalImg } from "../ModalImg/ModalImg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import EditIcon from "@mui/icons-material/Edit";
 import { Tooltip, IconButton, Stack, Button } from "@mui/material";
-import { Div } from "./StyledDetalle";
 
 export const Detalle = () => {
     const [show] = useState(false);
@@ -46,7 +44,7 @@ export const Detalle = () => {
     };
 
     return (
-        <Div>
+        <div>
             <Card style={{ width: "300px", margin: "0 auto" }}>
                 {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                     <>
@@ -61,7 +59,7 @@ export const Detalle = () => {
                         </Stack>
                     </>
                 )}
-                <ModalImg show={show} img={resultado.image} />
+                <img show={show} src={resultado.image} />
                 <Card.Body>
                     <Card.Title>🛒{resultado.name}</Card.Title>
                     <Card.Text>▪ Precio: ${resultado.price}</Card.Text>
@@ -78,6 +76,6 @@ export const Detalle = () => {
                     </Stack>
                 </Card.Body>
             </Card>
-        </Div>
+        </div>
     );
 };
