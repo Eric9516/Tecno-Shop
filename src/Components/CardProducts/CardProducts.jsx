@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -6,9 +7,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { FaCartPlus } from "react-icons/fa";
+
 export const CardProducts = ({ item }) => {
+    const navigate = useNavigate();
+    const handleOnClick = () => {
+        navigate(`/producto/${item.id}`);
+    };
     return (
-        <Card sx={{ maxWidth: 300, minHeight: 550 }}>
+        <Card sx={{ maxWidth: 300, minHeight: 500, cursor: "pointer" }} onClick={handleOnClick}>
             <div style={{ height: "300px", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <CardMedia component="img" alt="productos" height="auto" src={item.data().image} />
             </div>
@@ -24,18 +30,6 @@ export const CardProducts = ({ item }) => {
                     Descripcion: ${item.data().description}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">
-                    <Link style={{ textDecoration: "none" }} to={`/producto/${item.id}`}>
-                        Ver detalles
-                    </Link>
-                </Button>
-                <Button size="small">
-                    <Link to={`/carrito/${item.id}`}>
-                        <FaCartPlus size={"1.5em"} style={{ marginLeft: "20px" }} />
-                    </Link>
-                </Button>
-            </CardActions>
         </Card>
     );
 };

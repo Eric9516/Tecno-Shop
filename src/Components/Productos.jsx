@@ -4,7 +4,7 @@ import firebase from "../Config/firebase";
 import { estiloSpinner } from "../styles/estilosSpinner";
 import { Div } from "../styles/StyledProductos";
 import { BarraDeBusqueda } from "./BarraDeBusqueda";
-import { CardProducts } from "./CardProducts";
+import { CardProducts } from "./CardProducts/CardProducts";
 
 export const Productos = () => {
     const [resultado, setResultado] = useState([]);

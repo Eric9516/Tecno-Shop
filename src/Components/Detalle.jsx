@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { ModalImg } from "../Components/ModalImg";
 import { Link } from "react-router-dom";
+import { FaCartPlus } from "react-icons/fa";
 
 export const Detalle = () => {
     const [show] = useState(false);
@@ -16,7 +17,7 @@ export const Detalle = () => {
     const [resultado, setResultado] = useState({});
     const navigate = useNavigate();
     const context = useContext(AuthContext);
-    
+
     useEffect(() => {
         const peticion = async () => {
             try {
@@ -55,6 +56,11 @@ export const Detalle = () => {
                     <Button variant="primary" onClick={handlerBuy}>
                         Comprar
                     </Button>
+
+                    <Link to={`/carrito/${id}`}>
+                        <FaCartPlus size={"1.5em"} style={{ marginLeft: "20px" }} />
+                    </Link>
+
                     {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                         <>
                             <br />
@@ -62,6 +68,11 @@ export const Detalle = () => {
                             <Button variant="primary">
                                 <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/editar/${id}`}>
                                     Editar
+                                </Link>
+                            </Button>
+                            <Button size="small">
+                                <Link to={`/carrito/${id}`}>
+                                    <FaCartPlus size={"1.5em"} style={{ marginLeft: "20px" }} />
                                 </Link>
                             </Button>
                         </>
