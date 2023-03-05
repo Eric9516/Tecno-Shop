@@ -14,14 +14,14 @@ export const CardProducts = ({ item }) => {
             </div>
             <hr />
             <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
+                <Typography gutterBottom variant="p" component="div">
                     {item.data().name}
                 </Typography>
-                <Typography gutterBottom variant="p" component="div">
-                    Precio: ${item.data().price}
+                <Typography gutterBottom variant="h6" component="div">
+                    $ {item.data().price}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
+                    Descripcion: ${item.data().description}
                 </Typography>
             </CardContent>
             <CardActions>
