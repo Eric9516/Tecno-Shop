@@ -5,6 +5,7 @@ import { estiloSpinner } from "./estilosSpinner";
 import { Div } from "./StyledProductos";
 import { BarraDeBusqueda } from "../BarraDeBusqueda/BarraDeBusqueda";
 import { CardProducts } from "../CardProducts/CardProducts";
+import { SecondMenu } from "../SecondMenu/SecondMenu";
 
 export const Productos = () => {
     const [resultado, setResultado] = useState([]);
@@ -65,7 +66,7 @@ export const Productos = () => {
             <>
                 <Div>
                     <BarraDeBusqueda buscar={buscar} setBuscar={setBuscar} />
-
+                    <SecondMenu />
                     <div className="contenedor_padre">
                         {productosBuscados.map((item) => {
                             return <CardProducts item={item} />;
