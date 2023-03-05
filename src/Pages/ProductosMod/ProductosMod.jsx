@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import firebase from "../Config/firebase";
-import { estilosProdMod } from "../styles/estilosProdMod";
+import firebase from "../../Config/firebase";
+import { estilosProdMod } from "./estilosProdMod";
 
 export const ProductosMod = () => {
     const { id } = useParams();

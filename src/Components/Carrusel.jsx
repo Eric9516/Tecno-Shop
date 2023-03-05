@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import "../styles/estilos.css";
+
 import img from "../img/publicidades/publicidad.jpg";
 import img2 from "../img/publicidades/publicidad2.jpg";
 import img3 from "../img/publicidades/publicidad3.jpg";
@@ -26,5 +26,3 @@ export const Carrusel = () => {
         </Carousel>
     );
 };
-
-

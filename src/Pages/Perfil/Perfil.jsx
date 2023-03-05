@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
-import { ModalData } from "../Components/ModalData";
-import firebase from "../Config/firebase";
+import { AuthContext } from "../../Context/AuthContext";
+import { ModalData } from "../../Components/ModalData";
+import firebase from "../../Config/firebase";
 import { useParams } from "react-router-dom";
-import { FotoPerfil } from "../Components/FotoPerfil";
-import { estilosPerfil } from "../styles/estilosPerfil";
+import { FotoPerfil } from "../../Components/FotoPerfil";
+import { estilosPerfil } from "./estilosPerfil";
 
 export const Perfil = () => {
     const { id } = useParams();

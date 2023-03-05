@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import "../styles/estilos.css";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import "./estilos.css";
 import { Card } from "react-bootstrap";
-import firebase from "../Config/firebase";
-import { useNavigate } from "react-router-dom";
+import firebase from "../../Config/firebase";
 import Swal from "sweetalert2";
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
-import { ModalImg } from "../Components/ModalImg";
-import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext";
+import { ModalImg } from "../ModalImg/ModalImg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import EditIcon from "@mui/icons-material/Edit";
+import { Tooltip, IconButton, Stack, Button } from "@mui/material";
+import { Div } from "./StyledDetalle";
 
 export const Detalle = () => {
     const [show] = useState(false);
@@ -48,8 +46,21 @@ export const Detalle = () => {
     };
 
     return (
-        <div className="contenedor_detalle">
+        <Div>
             <Card style={{ width: "300px", margin: "0 auto" }}>
+                {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
+                    <>
+                        <Stack direction="row" spacing={5}>
+                            <Tooltip title="Editar">
+                                <IconButton>
+                                    <Link style={{ textDecoration: "none" }} to={`/producto/editar/${id}`}>
+                                        <EditIcon />
+                                    </Link>
+                                </IconButton>
+                            </Tooltip>
+                        </Stack>
+                    </>
+                )}
                 <ModalImg show={show} img={resultado.image} />
                 <Card.Body>
                     <Card.Title>🛒{resultado.name}</Card.Title>
@@ -59,24 +70,14 @@ export const Detalle = () => {
                         <Button onClick={handleBuy}>
                             <strong style={{ fontSize: "1.2em" }}>Comprar</strong>
                         </Button>
-                        <Link to={`/carrito/${id}`}>
-                            <AddShoppingCartIcon style={{ fontSize: "1.7em" }} />
-                        </Link>
+                        <Tooltip title="Agregar al carrito" placement="top">
+                            <Link to={`/carrito/${id}`}>
+                                <AddShoppingCartIcon style={{ fontSize: "1.7em" }} />
+                            </Link>
+                        </Tooltip>
                     </Stack>
-
-                    {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
-                        <>
-                            <Stack direction="row" spacing={5}>
-                                <Button>
-                                    <Link style={{ textDecoration: "none" }} to={`/producto/editar/${id}`}>
-                                        <strong style={{ fontSize: "1.2em" }}>Editar</strong>
-                                    </Link>
-                                </Button>
-                            </Stack>
-                        </>
-                    )}
                 </Card.Body>
             </Card>
-        </div>
+        </Div>
     );
 };

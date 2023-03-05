@@ -30,7 +30,6 @@ export const estilos = {
         width: "100%",
         paddingTop: "15px",
         paddingBottom: "15px",
-        marginBottom: "30px",
         // paddingLeft: "30px",
     },
     navBrand: {

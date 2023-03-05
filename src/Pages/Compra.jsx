@@ -6,7 +6,6 @@ import firebase from "../Config/firebase";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Swal from "sweetalert2";
-import "../styles/estilos.css";
 
 const estilos = {
     form: {

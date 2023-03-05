@@ -2,8 +2,8 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import firebase from "../Config/firebase";
-import { estilosProdAlta } from "../styles/productosAlta";
+import firebase from "../../Config/firebase";
+import { estilosProdAlta } from "./StyledProductosAlta";
 
 export const ProductosAlta = () => {
     const { handleSubmit, register } = useForm();

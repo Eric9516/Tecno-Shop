@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import firebase from "../Config/firebase";
-import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/StyledRegistro";
-import { calculoEdad } from "../Utils/calculoEdad";
+import firebase from "../../Config/firebase";
+import { Boton, Div, Formulario, H2, Input, P, Titulo } from "./StyledRegistro";
+import { calculoEdad } from "../../Utils/calculoEdad";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export const Registro = () => {
