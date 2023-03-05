@@ -9,7 +9,10 @@ import { FaCartPlus } from "react-icons/fa";
 export const CardProducts = ({ item }) => {
     return (
         <Card sx={{ maxWidth: 300, height: 550 }}>
-            <CardMedia component="img" alt="productos" height="auto" src={item.data().image} />
+            <div style={{ height: "300px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <CardMedia component="img" alt="productos" height="auto" src={item.data().image} />
+            </div>
+            <hr />
             <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
                     {item.data().name}
