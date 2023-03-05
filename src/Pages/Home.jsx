@@ -5,7 +5,7 @@ import { Productos } from "../Components/Productos";
 
 export const Home = () => {
     return (
-        <div>
+        <div style={{ backgroundColor: "#EDEDED" }}>
             <Carrusel />
             <Productos />
             <Footer />

@@ -9,7 +9,6 @@ export const Div = styled.div`
     width: 80vw;
     margin-left: auto;
     margin-right: auto;
-
     @media screen and (max-width: 960px) {
         width: 85%;
     }
@@ -20,7 +19,7 @@ export const Input = styled(Form.Control)`
 `;
 
 export const DivBusqueda = styled.div`
-    width: 50%;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
 

@@ -27,6 +27,7 @@ export const DropDown = styled(NavDropdown)`
 
 export const estilos = {
     navBar: {
+        width: "100%",
         paddingTop: "15px",
         paddingBottom: "15px",
         marginBottom: "30px",

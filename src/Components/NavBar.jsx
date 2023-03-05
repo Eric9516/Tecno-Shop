@@ -7,6 +7,9 @@ import { AuthContext } from "../Context/AuthContext";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MdComputer } from "react-icons/md";
 import { NavLink, DropDown, estilos, BsCart3Icon } from "../styles/StyledNavBar";
+import Button from "react-bootstrap/Button";
+import { BsSearch } from "react-icons/bs";
+import Form from "react-bootstrap/Form";
 
 export const NavBar = () => {
     const context = useContext(AuthContext);
@@ -30,6 +33,12 @@ export const NavBar = () => {
                             </NavDropdown>
                         </Nav>
                         <Nav>
+                            <Form className="d-flex">
+                                <Form.Control type="search" placeholder="Buscar producto" className="me-2" aria-label="Search" />
+                                <Button variant="outline-success">
+                                    <BsSearch />
+                                </Button>
+                            </Form>
                             <NavLink as={Link} to="/home">
                                 Home
                             </NavLink>
