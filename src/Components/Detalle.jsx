@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/estilos.css";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import firebase from "../Config/firebase";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -9,7 +9,9 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { ModalImg } from "../Components/ModalImg";
 import { Link } from "react-router-dom";
-import { FaCartPlus } from "react-icons/fa";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 export const Detalle = () => {
     const [show] = useState(false);
@@ -30,7 +32,7 @@ export const Detalle = () => {
         peticion();
     }, [id]);
 
-    const handlerBuy = () => {
+    const handleBuy = () => {
         if (context.login) {
             navigate(`/Comprar/${id}`);
         } else {
@@ -53,28 +55,24 @@ export const Detalle = () => {
                     <Card.Title>🛒{resultado.name}</Card.Title>
                     <Card.Text>▪ Precio: ${resultado.price}</Card.Text>
                     <Card.Text>{resultado.description}</Card.Text>
-                    <Button variant="primary" onClick={handlerBuy}>
-                        Comprar
-                    </Button>
-
-                    <Link to={`/carrito/${id}`}>
-                        <FaCartPlus size={"1.5em"} style={{ marginLeft: "20px" }} />
-                    </Link>
+                    <Stack direction="row" spacing={5}>
+                        <Button onClick={handleBuy}>
+                            <strong style={{ fontSize: "1.2em" }}>Comprar</strong>
+                        </Button>
+                        <Link to={`/carrito/${id}`}>
+                            <AddShoppingCartIcon style={{ fontSize: "1.7em" }} />
+                        </Link>
+                    </Stack>
 
                     {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
                         <>
-                            <br />
-                            <br />
-                            <Button variant="primary">
-                                <Link style={{ color: "#fff", textDecoration: "none" }} to={`/producto/editar/${id}`}>
-                                    Editar
-                                </Link>
-                            </Button>
-                            <Button size="small">
-                                <Link to={`/carrito/${id}`}>
-                                    <FaCartPlus size={"1.5em"} style={{ marginLeft: "20px" }} />
-                                </Link>
-                            </Button>
+                            <Stack direction="row" spacing={5}>
+                                <Button>
+                                    <Link style={{ textDecoration: "none" }} to={`/producto/editar/${id}`}>
+                                        <strong style={{ fontSize: "1.2em" }}>Editar</strong>
+                                    </Link>
+                                </Button>
+                            </Stack>
                         </>
                     )}
                 </Card.Body>
