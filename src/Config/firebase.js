@@ -3,12 +3,12 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    apiKey: "AIzaSyDLrv46Qg0ZH8MdZwB4PrJ09CSJFCdgZ_Q",
+    authDomain: "tecnoshop-12685.firebaseapp.com",
+    projectId: "tecnoshop-12685",
+    storageBucket: "tecnoshop-12685.appspot.com",
+    messagingSenderId: "418961500468",
+    appId: "1:418961500468:web:e947af76e8a987f1979d61",
 };
 firebase.initializeApp(firebaseConfig);
 firebase.auth = firebase.auth();
