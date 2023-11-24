@@ -12,7 +12,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-export const FotoPerfil = () => {
+const FotoPerfil = () => {
     const context = useContext(AuthContext);
     const [dialogs, setDialogs] = useState(false);
     const [imgCrop, setImgCrop] = useState(false);
@@ -41,9 +41,8 @@ export const FotoPerfil = () => {
         const peticion = async () => {
             try {
                 const consulta = await firebase.firestore().collection("imagenesDePerfil").where("id", "==", context.user.userId).get();
-                // const data = consulta.docs[0].data();
-                // setImage(data.img);
-                // aca hay un problema
+                const data = consulta.docs[0].data();
+                setImage(data.img);
             } catch (error) {
                 console.log(error);
             }
@@ -74,7 +73,7 @@ export const FotoPerfil = () => {
                         visible={dialogs}
                         header={() => (
                             <p htmlFor="" className="text-2x1 font-semibold textColor">
-                                Foto de perfil
+                                Update Profile
                             </p>
                         )}
                         onHide={() => setDialogs(false)}
@@ -84,7 +83,7 @@ export const FotoPerfil = () => {
                                 <div className="flex justify-content-around w-12 mt-4">
                                     <Avatar width={400} height={300} onClose={onClose} onCrop={onCrop} />
 
-                                    <Button label="Guardar" icon="pi pi-check" onClick={saveImage}></Button>
+                                    <Button label="Save" icon="pi pi-check" onClick={saveImage}></Button>
                                 </div>
                             </div>
                         </div>
@@ -94,3 +93,5 @@ export const FotoPerfil = () => {
         </div>
     );
 };
+
+export default FotoPerfil;

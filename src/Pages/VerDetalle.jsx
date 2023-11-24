@@ -1,6 +1,6 @@
 import React from "react";
-import { Detalle } from "../../Components/Detalle/Detalle";
-import { Div } from "./StyledVerDetalle";
+import { Detalle } from "../Components/Detalle";
+import { Div } from "../styles/StyledVerDetalle";
 
 const VerDetalle = () => {
     return (

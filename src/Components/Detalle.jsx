@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import "./estilos.css";
+import "../styles/estilos.css";
 import { Card } from "react-bootstrap";
-import firebase from "../../Config/firebase";
+import firebase from "../Config/firebase";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext } from "../Context/AuthContext";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import EditIcon from "@mui/icons-material/Edit";
 import { Tooltip, IconButton, Stack, Button } from "@mui/material";
-import { Div } from "./StyledDetalle";
+import { Div } from "../styles/StyledDetalle";
 
 export const Detalle = () => {
     const [show] = useState(false);

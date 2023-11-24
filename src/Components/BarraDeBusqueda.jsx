@@ -1,4 +1,4 @@
-import { Input, DivBusqueda } from "../BarraDeBusqueda/StyledBarraDeBusqueda";
+import { Input, DivBusqueda } from "../styles/StyledBarraDeBusqueda";
 import { BsSearch } from "react-icons/bs";
 import InputGroup from "react-bootstrap/InputGroup";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Carrusel } from "../Components/Carrusel";
-import { Footer } from "../Components/Footer/Footer";
+import { Footer } from "../Components/Footer";
 import { Productos } from "../Components/Productos/Productos";
 
 export const Home = () => {

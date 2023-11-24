@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { Nav, Navbar } from "react-bootstrap";
 import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext } from "../Context/AuthContext";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MdComputer } from "react-icons/md";
-import { NavLink, DropDown, estilos, BsCart3Icon } from "./StyledNavBar";
+import { NavLink, DropDown, estilos, BsCart3Icon } from "../styles/StyledNavBar";
 
 export const NavBar = () => {
     const context = useContext(AuthContext);

@@ -3,8 +3,8 @@ import { Button, Spinner } from "react-bootstrap";
 import firebase from "../../Config/firebase";
 import { estiloSpinner } from "./estilosSpinner";
 import { Div } from "./StyledProductos";
-import { BarraDeBusqueda } from "../BarraDeBusqueda/BarraDeBusqueda";
-import { CardProducts } from "../CardProducts/CardProducts";
+import { BarraDeBusqueda } from "../BarraDeBusqueda";
+import { CardProducts } from "../CardProducts";
 
 export const Productos = () => {
     const [resultado, setResultado] = useState([]);
