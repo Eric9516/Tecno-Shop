@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { ModalData } from "../Components/ModalData";
 import firebase from "../Config/firebase";
-import { useParams } from "react-router-dom";
-import FotoPerfil from "../Components/FotoPerfil";
+import { useParams, Link } from "react-router-dom";
+import { FotoPerfil } from "../Components/FotoPerfil";
 import { estilosPerfil } from "../styles/estilosPerfil";
 
 export const Perfil = () => {

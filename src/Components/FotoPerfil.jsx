@@ -12,12 +12,13 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
-const FotoPerfil = () => {
+export const FotoPerfil = () => {
     const context = useContext(AuthContext);
     const [dialogs, setDialogs] = useState(false);
-    const [imgCrop, setImgCrop] = useState(false);
-    const [storeImage, setStoreImage] = useState([]);
+    const [imgCrop, setImgCrop] = useState(null);
     const [image, setImage] = useState("");
+    const [isFirstTime, setIsFirstTime] = useState(true);
+    const [successMessage, setSuccessMessage] = useState("");
 
     const onCrop = (view) => {
         setImgCrop(view);
@@ -28,27 +29,55 @@ const FotoPerfil = () => {
     };
 
     const saveImage = async () => {
-        setStoreImage([...storeImage, { imgCrop }]);
-        await firebase.firestore().collection("imagenesDePerfil").add({
-            img: storeImage[0].imgCrop,
+        await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).set({
+            img: imgCrop,
             id: context.user.userId,
         });
+
         setDialogs(false);
-        window.location.reload();
+        setImgCrop(null);
+        setIsFirstTime(false);
+
+        setSuccessMessage(isFirstTime ? "Foto agregada correctamente" : "Foto de perfil cambiada correctamente");
+
+        setImage(imgCrop);
+
+        setTimeout(() => {
+            setSuccessMessage("");
+        }, 5000);
+    };
+
+    const deleteImage = async () => {
+        try {
+            await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).delete();
+            setImage("");
+            setSuccessMessage("Foto de perfil eliminada correctamente");
+
+            setTimeout(() => {
+                setSuccessMessage("");
+                window.location.reload();
+            }, 5000);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
         const peticion = async () => {
             try {
-                const consulta = await firebase.firestore().collection("imagenesDePerfil").where("id", "==", context.user.userId).get();
-                const data = consulta.docs[0].data();
-                setImage(data.img);
+                const consulta = await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).get();
+                const data = consulta.data();
+                if (data) {
+                    setImage(data.img);
+                } else {
+                    setImage("");
+                }
             } catch (error) {
                 console.log(error);
             }
         };
         peticion();
-    });
+    }, [context.user.userId, imgCrop]);
 
     return (
         <div>
@@ -59,20 +88,20 @@ const FotoPerfil = () => {
                             width: "200px",
                             height: "200px",
                             borderRadius: "50%",
-                            objectFix: "cover",
+                            objectFit: "cover",
                         }}
                         src={image.length ? image : img}
                         alt=""
                     />
 
                     <p style={{ cursor: "pointer" }} onClick={() => setDialogs(true)}>
-                        Cambiar imagen de perfil&nbsp;
+                        {isFirstTime ? "Agregar imagen de perfil" : "Cambiar imagen de perfil"}&nbsp;
                         <AiFillCamera size={"1.5em"} />
                     </p>
                     <Dialog
                         visible={dialogs}
                         header={() => (
-                            <p htmlFor="" className="text-2x1 font-semibold textColor">
+                            <p htmlFor="" className="text-2xl font-semibold textColor">
                                 Update Profile
                             </p>
                         )}
@@ -89,9 +118,9 @@ const FotoPerfil = () => {
                         </div>
                     </Dialog>
                 </div>
+                {successMessage && <p className="text-green-500 text-sm mt-2">{successMessage}</p>}
+                {image && <Button className="p-button-danger mt-2" label="Eliminar Foto de Perfil" onClick={deleteImage} />}
             </div>
         </div>
     );
 };
-
-export default FotoPerfil;

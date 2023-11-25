@@ -3,7 +3,7 @@ import { Home } from "./Pages/Home";
 import { Registro } from "./Pages/Registro";
 import { Login } from "./Pages/Login";
 import { NavBar } from "./Components/NavBar";
-import VerDetalle from "./Pages/VerDetalle";
+import { VerDetalle } from "./Pages/VerDetalle";
 import { ProductosAlta } from "./Pages/ProductosAlta.jsx";
 import { ProductosMod } from "./Pages/ProductosMod";
 import AuthProvider from "./Context/AuthContext";
