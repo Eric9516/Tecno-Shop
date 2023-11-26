@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import firebase from "../Config/firebase";
 import { estiloSpinner } from "../styles/estilosSpinner";
@@ -13,10 +13,17 @@ export const Productos = () => {
     const [buscar, setBuscar] = useState("");
     const [masDatos, setMasDatos] = useState();
     const [cantidadProductosTotales, setCantidadProductosTotales] = useState(0);
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
 
     const fetchMore = async () => {
         try {
-            const querySnapshot = await firebase.firestore().collection("productos").orderBy("name", "asc").startAfter(masDatos).limit(8).get();
+            let query = firebase.firestore().collection("productos").orderBy("name", "asc").startAfter(masDatos).limit(8);
+
+            if (categoriaSeleccionada) {
+                query = query.where("category", "==", categoriaSeleccionada);
+            }
+
+            const querySnapshot = await query.get();
 
             const datos = querySnapshot.docs;
             const otrosDatos = querySnapshot.docs[querySnapshot.docs.length - 1];
@@ -32,14 +39,16 @@ export const Productos = () => {
         }
     };
 
-    useCallback(() => {
-        setResultado(resultado);
-    }, [resultado]);
-
     useEffect(() => {
         const cargarProductos = async () => {
             try {
-                const querySnapshot = await firebase.firestore().collection("productos").limit(8).orderBy("name", "asc").get();
+                let query = firebase.firestore().collection("productos").limit(8).orderBy("name", "asc");
+
+                if (categoriaSeleccionada && categoriaSeleccionada !== "Mostrar Todos") {
+                    query = query.where("category", "==", categoriaSeleccionada);
+                }
+
+                const querySnapshot = await query.get();
 
                 const datos = querySnapshot.docs;
                 const otrosDatos = querySnapshot.docs[querySnapshot.docs.length - 1];
@@ -53,11 +62,12 @@ export const Productos = () => {
                 setCantidadProductosTotales(totalDatos.length);
             } catch (error) {
                 console.error("Error al cargar datos iniciales:", error);
+                setLoading(false); 
             }
         };
 
         cargarProductos();
-    }, []);
+    }, [categoriaSeleccionada]);
 
     if (loading) {
         return (
@@ -71,9 +81,15 @@ export const Productos = () => {
     return (
         <Div>
             <BarraDeBusqueda buscar={buscar} setBuscar={setBuscar} />
-            <Categorias />
+            <Categorias onCategoriaSeleccionada={setCategoriaSeleccionada} />
             <div className="contenedor_padre">
                 {resultado
+                    .filter((item) => {
+                        if (categoriaSeleccionada === "" || categoriaSeleccionada === "Mostrar Todos") {
+                            return true; 
+                        }
+                        return item.data().category === categoriaSeleccionada;
+                    })
                     .filter((item) => item.data().name.toLowerCase().includes(buscar.toLowerCase()))
                     .map((item) => (
                         <CardProducts key={item.id} item={item} />

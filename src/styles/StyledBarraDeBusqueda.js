@@ -11,6 +11,6 @@ export const DivBusqueda = styled.div`
     margin-right: auto;
 
     @media screen and (max-width: 960px) {
-        width: 65%;
+        width: 100%;
     }
 `;
