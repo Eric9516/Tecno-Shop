@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../Config/firebase";
 import Dropdown from "react-bootstrap/Dropdown";
+import "../styles/categorias.css";
 
 export const Categorias = (props) => {
     const [categorias, setCategorias] = useState([]);
@@ -32,7 +33,7 @@ export const Categorias = (props) => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     {categorias.map((categoria, index) => (
-                        <Dropdown.Item key={index} style={{ margin: "0", padding: "0" }} onClick={() => handleCategoriaSeleccionada(categoria)}>
+                        <Dropdown.Item key={index} className={categoria === "Mostrar Todos" ? "mostrar-todos" : ""} onClick={() => handleCategoriaSeleccionada(categoria)}>
                             {categoria}
                         </Dropdown.Item>
                     ))}
