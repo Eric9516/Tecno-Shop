@@ -32,6 +32,10 @@ export const ProductosAlta = () => {
                     <Form.Control type="text" {...register("description", { required: true })} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Categoría</Form.Label>
+                    <Form.Control type="text" {...register("category", { required: true })} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Imagen</Form.Label>
                     <Form.Control type="text" {...register("image", { required: true })} />
                 </Form.Group>

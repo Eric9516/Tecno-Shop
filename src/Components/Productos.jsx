@@ -5,6 +5,7 @@ import { estiloSpinner } from "../styles/estilosSpinner";
 import { Div } from "../styles/StyledProductos";
 import { BarraDeBusqueda } from "./BarraDeBusqueda";
 import { CardProducts } from "./CardProducts";
+import { Categorias } from "./Categorias";
 
 export const Productos = () => {
     const [resultado, setResultado] = useState([]);
@@ -70,6 +71,7 @@ export const Productos = () => {
     return (
         <Div>
             <BarraDeBusqueda buscar={buscar} setBuscar={setBuscar} />
+            <Categorias />
             <div className="contenedor_padre">
                 {resultado
                     .filter((item) => item.data().name.toLowerCase().includes(buscar.toLowerCase()))
@@ -77,7 +79,7 @@ export const Productos = () => {
                         <CardProducts key={item.id} item={item} />
                     ))}
             </div>
-            {cantidadProductosTotales !== resultado.length ? <Button onClick={fetchMore}>Mostrar mas</Button> : <Button>Nada mas para mostrar</Button>}
+            {cantidadProductosTotales !== resultado.length ? <Button onClick={fetchMore}>Mostrar mas</Button> : <h3>Nada mas para mostrar</h3>}
         </Div>
     );
 };

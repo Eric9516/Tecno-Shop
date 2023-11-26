@@ -16,6 +16,7 @@ export const ProductosMod = () => {
                 setValue("name", pet.data().name);
                 setValue("price", pet.data().price);
                 setValue("description", pet.data().description);
+                setValue("category", pet.data().category);
                 setValue("image", pet.data().image);
             } catch (error) {
                 console.log(error);
@@ -56,6 +57,10 @@ export const ProductosMod = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Descripcion</Form.Label>
                     <Form.Control type="text" {...register("description", { required: true })} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Categoría</Form.Label>
+                    <Form.Control type="text" {...register("category", { required: true })} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Imagen</Form.Label>

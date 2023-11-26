@@ -25,6 +25,9 @@ export const CardProducts = ({ item }) => {
                 <Typography variant="body2" color="text.secondary">
                     Descripcion: {item.data().description}
                 </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    Categoría: {item.data().category}
+                </Typography>
             </CardContent>
         </Card>
     );
