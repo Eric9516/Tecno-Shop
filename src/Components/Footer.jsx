@@ -1,10 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsFacebook, BsInstagram, BsFillTelephoneFill, BsFillArrowUpCircleFill } from "react-icons/bs";
 import { RiWhatsappFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { A, Div1, Div2, DivContenedor, DivFooter, Redes, Ul, H5 } from "../styles/StyledFooter";
+import firebase from "../Config/firebase";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
 
 export const Footer = () => {
+    const context = useContext(AuthContext);
+    // const [provincia, setProvincia] = useState("");
+    // const [localidad, setLocalidad] = useState("");
+    // const [direccion, setDireccion] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [facebook, setFacebook] = useState("");
+    const [instagram, setInstagram] = useState("");
+
+    useEffect(() => {
+        console.log(context.user.userId);
+        const peticion = async () => {
+            try {
+                const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", context.user.userId).get();
+                if (consulta.docs.length > 0) {
+                    const data = consulta.docs[0].data();
+                    console.log("Facebook URL:", data.facebook); // Verifica el valor en la consola
+                    setTelefono(data.telefono);
+                    setFacebook(data.facebook);
+                    setInstagram(data.instagram);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        peticion();
+    }, [context.user.userId]);
+
     return (
         <>
             <DivFooter id="footer">
@@ -14,7 +45,7 @@ export const Footer = () => {
                             <H5>Encontranos en nuestras redes sociales</H5>
                             <Redes>
                                 <li>
-                                    <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
+                                    <a href={`${facebook}`} target="_blank" rel="noreferrer">
                                         <BsFacebook size="2em" color="#61dafb" />
                                     </a>
                                 </li>
@@ -28,13 +59,13 @@ export const Footer = () => {
                         <Ul>
                             <h5>Contactanos</h5>
                             <li>
-                                <A href="tel:45645645">
-                                    <BsFillTelephoneFill size="1.5em" color="#61dafb" /> xxxx-xxxxxxx
+                                <A href={{ telefono }}>
+                                    <BsFillTelephoneFill size="1.5em" color="#61dafb" /> {telefono}
                                 </A>
                             </li>
                             <li>
                                 <A href="mailto:ejemplo@gmail.com">
-                                    <MdEmail size="1.5em" color="#61dafb" /> xxxxxxxxx@gmail.com
+                                    <MdEmail size="1.5em" color="#61dafb" /> {context.user.email}
                                 </A>
                             </li>
                             <li>

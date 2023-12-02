@@ -33,7 +33,7 @@ export const NavBar = () => {
                             <NavLink as={Link} to="/home">
                                 Home
                             </NavLink>
-                            {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
+                            {context.login && context.user.name === "Eric" && context.user.lastname === "Cantoni" && (
                                 <>
                                     <NavLink as={Link} to="/producto/alta">
                                         Agregar producto
@@ -51,7 +51,7 @@ export const NavBar = () => {
                                     </DropDown>
                                 </>
                             )}
-                            {context.login && context.user.userId !== "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
+                            {context.login && context.user.name !== "Eric" && context.user.name !== "Cantoni" && (
                                 <>
                                     <Nav.Link as={Link} to="/carrito">
                                         <BsCart3Icon />

@@ -47,7 +47,7 @@ export const Detalle = () => {
     return (
         <Div>
             <Card style={{ width: "300px", margin: "0 auto" }}>
-                {context.login && context.user.userId === "V74ntZ1jdFYqjYJedlDa4LrmozN2" && (
+                {context.login && context.user.name === "Eric" && context.user.lastname === "Cantoni" && (
                     <>
                         <Stack direction="row" spacing={5}>
                             <Tooltip title="Editar">

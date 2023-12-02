@@ -11,6 +11,7 @@ import { Comprar } from "./Pages/Compra";
 import { Perfil } from "./Pages/Perfil";
 import { Carrito } from "./Pages/Carrito";
 
+
 const App = () => {
     return (
         <div className="App">
