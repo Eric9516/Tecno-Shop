@@ -1,25 +1,10 @@
-import React, { useEffect, useState } from "react";
-import firebase from "../Config/firebase";
+import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../styles/categorias.css";
+import { useCategory } from "../hooks/useCategory";
 
 export const Categorias = (props) => {
-    const [categorias, setCategorias] = useState([]);
-
-    useEffect(() => {
-        const cargarCategorias = async () => {
-            try {
-                const querySnapshot = await firebase.firestore().collection("productos").get();
-                const datos = querySnapshot.docs;
-                const categoriasProductos = datos.map((doc) => doc.data().category);
-                const categoriasUnicas = ["Mostrar Todos", ...new Set(categoriasProductos)];
-                setCategorias(categoriasUnicas);
-            } catch (error) {
-                console.error("Error al cargar datos iniciales:", error);
-            }
-        };
-        cargarCategorias();
-    }, []);
+    const { categorias, loading } = useCategory();
 
     const handleCategoriaSeleccionada = (categoria) => {
         props.onCategoriaSeleccionada(categoria === "Mostrar Todos" ? "" : categoria);
@@ -29,14 +14,15 @@ export const Categorias = (props) => {
         <div style={{ display: "flex", gap: "30px" }}>
             <Dropdown>
                 <Dropdown.Toggle style={{ backgroundColor: "transparent", color: "#000", borderColor: "transparent", margin: "0", padding: "0" }} id="dropdown-basic">
-                    Categorías
+                    {loading ? "Cargando categorías..." : "Categorías"}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    {categorias.map((categoria, index) => (
-                        <Dropdown.Item key={index} className={categoria === "Mostrar Todos" ? "mostrar-todos" : ""} onClick={() => handleCategoriaSeleccionada(categoria)}>
-                            {categoria}
-                        </Dropdown.Item>
-                    ))}
+                    {categorias &&
+                        categorias.map((categoria, index) => (
+                            <Dropdown.Item key={index} className={categoria === "Mostrar Todos" ? "mostrar-todos" : ""} onClick={() => handleCategoriaSeleccionada(categoria)}>
+                                {categoria}
+                            </Dropdown.Item>
+                        ))}
                 </Dropdown.Menu>
             </Dropdown>
             <p style={{ margin: "0" }}>Precio</p>

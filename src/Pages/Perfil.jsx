@@ -6,6 +6,7 @@ import firebase from "../Config/firebase";
 import { useParams } from "react-router-dom";
 import { FotoPerfil } from "../Components/FotoPerfil";
 import { estilosPerfil } from "../styles/estilosPerfil";
+import { useFormState } from "react-hook-form";
 
 export const Perfil = () => {
     const { id } = useParams();
