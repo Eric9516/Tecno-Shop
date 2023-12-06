@@ -10,7 +10,8 @@ import { NavLink, DropDown, estilos, BsCart3Icon } from "../styles/StyledNavBar"
 
 export const NavBar = () => {
     const context = useContext(AuthContext);
-    let nombre = `${context.user.name} ${context.user.lastname}`;
+    const { name, lastname, userId } = context.user;
+    const isLogged = context.login && name === "Eric" && lastname === "Cantoni";
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={estilos.navBar} id="nav">
@@ -33,7 +34,7 @@ export const NavBar = () => {
                             <NavLink as={Link} to="/home">
                                 Home
                             </NavLink>
-                            {context.login && context.user.name === "Eric" && context.user.lastname === "Cantoni" && (
+                            {isLogged && (
                                 <>
                                     <NavLink as={Link} to="/producto/alta">
                                         Agregar producto
@@ -41,8 +42,8 @@ export const NavBar = () => {
                                     <Nav.Link as={Link} to="/carrito">
                                         <BsCart3Icon />
                                     </Nav.Link>
-                                    <DropDown title={nombre} id="nav-dropdown" menuVariant="dark" active>
-                                        <NavDropdown.Item as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
+                                    <DropDown title={`${name + " " + lastname}`} id="nav-dropdown" menuVariant="dark" active>
+                                        <NavDropdown.Item as={Link} style={estilos.link} to={`/perfil/${userId}`}>
                                             Mi perfil
                                         </NavDropdown.Item>
                                         <NavDropdown.Item as={Link} onClick={context.handlerLogOut} style={estilos.link}>
@@ -51,13 +52,13 @@ export const NavBar = () => {
                                     </DropDown>
                                 </>
                             )}
-                            {context.login && context.user.name !== "Eric" && context.user.name !== "Cantoni" && (
+                            {context.login && !isLogged && (
                                 <>
                                     <Nav.Link as={Link} to="/carrito">
                                         <BsCart3Icon />
                                     </Nav.Link>
-                                    <DropDown title={nombre} id="nav-dropdown" menuVariant="dark" active>
-                                        <Nav.Link as={Link} style={estilos.link} to={`/perfil/${context.user.userId}`}>
+                                    <DropDown title={`${name + " " + lastname}`} id="nav-dropdown" menuVariant="dark" active>
+                                        <Nav.Link as={Link} style={estilos.link} to={`/perfil/${userId}`}>
                                             Mi perfil
                                         </Nav.Link>
                                         <Nav.Link as={Link} onClick={context.handlerLogOut} style={estilos.link}>
