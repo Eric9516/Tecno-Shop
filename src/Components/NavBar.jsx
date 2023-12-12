@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { Nav, Navbar } from "react-bootstrap";
+import { estiloLoading } from "../styles/loadingNavbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MdComputer } from "react-icons/md";
 import { NavLink, DropDown, estilos, BsCart3Icon } from "../styles/StyledNavBar";
@@ -12,11 +13,15 @@ export const NavBar = () => {
     const context = useContext(AuthContext);
     const { name, lastname, userId } = context.user;
     const isLogged = context.login && name === "Eric" && lastname === "Cantoni";
-    const { navbarStyle } = useNavbarColor();
+    const { navbarStyle, loading } = useNavbarColor();
 
-    useEffect(()=> {
-        
-    })
+    if (loading) {
+        return (
+            <div style={estiloLoading.loading}>
+                <h2>Tecnoshopp</h2>
+            </div>
+        );
+    }
 
     return (
         <div>

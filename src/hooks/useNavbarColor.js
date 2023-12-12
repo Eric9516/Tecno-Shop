@@ -4,6 +4,7 @@ import { AuthContext } from "../Context/AuthContext";
 
 export const useNavbarColor = () => {
     const [navbarColor, setNavbarColor] = useState("#fff");
+    const [loading, setLoading] = useState(true);
     const context = useContext(AuthContext);
     const { userId } = context.user;
 
@@ -22,6 +23,9 @@ export const useNavbarColor = () => {
                     setNavbarColor(userData.navbarColor);
                 }
             });
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500);
         return () => {
             cambiarColor();
         };
@@ -31,5 +35,5 @@ export const useNavbarColor = () => {
         backgroundColor: navbarColor,
     };
 
-    return { navbarStyle, changeNavbarColor };
+    return { navbarStyle, changeNavbarColor, loading };
 };
