@@ -10,7 +10,7 @@ export const usePerfilData = (id) => {
     const [telefono, setTelefono] = useState("");
     const [facebook, setFacebook] = useState("");
     const [instagram, setInstagram] = useState("");
-    const [linkWhatsapp, setLinkWhatsapp] = useState("");
+    const [link_Whatsapp, setLinkWhatsapp] = useState("");
 
     useEffect(() => {
         const peticion = async () => {
@@ -35,5 +35,5 @@ export const usePerfilData = (id) => {
         peticion();
     }, [id]);
 
-    return { dni, provincia, localidad, direccion, codigo_Postal, telefono, facebook, instagram, linkWhatsapp };
+    return { dni, provincia, localidad, direccion, codigo_Postal, telefono, facebook, instagram, link_Whatsapp };
 };

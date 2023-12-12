@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { estiloSpinner } from "../styles/estilosSpinner";
+import { useState } from "react";
 import { Div } from "../styles/StyledProductos";
 import { BarraDeBusqueda } from "./BarraDeBusqueda";
 import { CardProducts } from "./CardProducts";
@@ -8,9 +9,13 @@ import { Categorias } from "./Categorias";
 import { useProducts } from "../hooks/useProducts.js";
 
 export const Productos = () => {
-    const { resultado, loading, fetchMore, cantidadProductosTotales } = useProducts();
-    const [buscar, setBuscar] = React.useState("");
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = React.useState("");
+    const [buscar, setBuscar] = useState("");
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
+    const { resultado, loading, fetchMore, cantidadProductosTotales } = useProducts(categoriaSeleccionada);
+
+    const handleCategoriaSeleccionada = (categoria) => {
+        setCategoriaSeleccionada(categoria === "Mostrar Todos" ? "" : categoria);
+    };
 
     if (loading) {
         return (
@@ -24,11 +29,13 @@ export const Productos = () => {
     return (
         <Div>
             <BarraDeBusqueda buscar={buscar} setBuscar={setBuscar} />
-            <Categorias onCategoriaSeleccionada={setCategoriaSeleccionada} />
+            <div className="col-lg-3 col-md-12">
+                <Categorias onCategoriaSeleccionada={handleCategoriaSeleccionada} />
+            </div>
             <div className="contenedor_padre">
                 {resultado
                     .filter((item) => {
-                        if (categoriaSeleccionada === "" || categoriaSeleccionada === "Mostrar Todos") {
+                        if (!categoriaSeleccionada || categoriaSeleccionada === "Mostrar Todos") {
                             return true;
                         }
                         return item.data().category === categoriaSeleccionada;

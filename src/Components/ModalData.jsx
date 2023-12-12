@@ -15,7 +15,7 @@ const estilos = {
 
 export const ModalData = ({ show, handleClose, handleShow }) => {
     const context = useContext(AuthContext);
-    const { handleSubmit, register, onSubmit, setValue } = useUserData(); // Usa el nuevo hook
+    const { handleSubmit, register, onSubmit } = useUserData(); // Usa el nuevo hook
 
     return (
         <>

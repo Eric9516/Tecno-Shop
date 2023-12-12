@@ -39,6 +39,16 @@ export const useProfileImage = () => {
     };
 
     useEffect(() => {
+        const fetchProfileImage = async () => {
+            try {
+                const consulta = await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).get();
+                return consulta.data()?.img;
+            } catch (error) {
+                console.error("Error al obtener la imagen:", error);
+                return null;
+            }
+        };
+
         const fetchData = async () => {
             try {
                 const data = await fetchProfileImage();
@@ -50,11 +60,6 @@ export const useProfileImage = () => {
 
         fetchData();
     }, [context.user.userId, imgCrop]);
-
-    const fetchProfileImage = async () => {
-        const consulta = await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).get();
-        return consulta.data()?.img;
-    };
 
     const updateProfileImage = async () => {
         await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).set({

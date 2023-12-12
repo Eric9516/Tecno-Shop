@@ -17,13 +17,11 @@ export const Footer = () => {
     const [instagram, setInstagram] = useState("");
 
     useEffect(() => {
-        console.log(context.user.userId);
         const peticion = async () => {
             try {
                 const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", context.user.userId).get();
                 if (consulta.docs.length > 0) {
                     const data = consulta.docs[0].data();
-                    console.log("Facebook URL:", data.facebook); // Verifica el valor en la consola
                     setTelefono(data.telefono);
                     setFacebook(data.facebook);
                     setInstagram(data.instagram);

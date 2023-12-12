@@ -10,7 +10,7 @@ import AuthProvider from "./Context/AuthContext";
 import { Comprar } from "./Pages/Compra";
 import { Perfil } from "./Pages/Perfil";
 import { Carrito } from "./Pages/Carrito";
-
+import { PersonalizacionSitio } from "./Pages/PersonalizacionSitio.jsx";
 
 const App = () => {
     return (
@@ -29,6 +29,7 @@ const App = () => {
                         <Route path="/producto/:id" element={<VerDetalle />} />
                         <Route path="/producto/alta" element={<ProductosAlta />} />
                         <Route path="/producto/editar/:id" element={<ProductosMod />} />
+                        <Route path="/estilos/:id" element={<PersonalizacionSitio />} />
                     </Routes>
                 </AuthProvider>
             </Router>

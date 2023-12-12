@@ -12,7 +12,7 @@ export const CardProducts = ({ item }) => {
     return (
         <Card sx={{ maxWidth: 300, minHeight: 500, cursor: "pointer" }} onClick={handleOnClick}>
             <div style={{ height: "300px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <CardMedia component="img" alt="productos" height="auto" src={item.data().image} />
+                <CardMedia component="img" alt="productos" src={item.data().image} />
             </div>
             <hr />
             <CardContent>
@@ -22,11 +22,11 @@ export const CardProducts = ({ item }) => {
                 <Typography gutterBottom variant="h6" component="div">
                     $ {item.data().price}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Descripcion: {item.data().description}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
+                {/* <Typography variant="body2" color="text.secondary" style={{ marginBottom: "5px" }}>
                     Categoría: {item.data().category}
+                </Typography> */}
+                <Typography variant="body2" color="text.secondary">
+                    Descripción: {item.data().description}
                 </Typography>
             </CardContent>
         </Card>

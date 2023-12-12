@@ -56,10 +56,6 @@ export const Perfil = () => {
                             <Form.Label>Página de Instagram</Form.Label>
                             <Form.Control type="text" readOnly value={perfilData.instagram} />
                         </Form.Group>
-                        <Form.Group controlId="formBasicWhatsapp">
-                            <Form.Label>Link de WhatsApp</Form.Label>
-                            <Form.Control type="text" readOnly value={perfilData.linkWhatsapp} />
-                        </Form.Group>
                     </>
                 )}
                 <ModalData show={show} handleClose={handleClose} handleShow={handleShow} />

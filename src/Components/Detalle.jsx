@@ -65,7 +65,7 @@ export const Detalle = () => {
                     <Card.Title>🛒{resultado.name}</Card.Title>
                     <Card.Text>▪ Precio: ${resultado.price}</Card.Text>
                     <Card.Text>{resultado.description}</Card.Text>
-                    <Card.Text>{resultado.category}</Card.Text>
+                    {/* <Card.Text>{resultado.category}</Card.Text> */}
                     <Stack direction="row" spacing={5}>
                         <Button onClick={handleBuy}>
                             <strong style={{ fontSize: "1.2em" }}>Comprar</strong>

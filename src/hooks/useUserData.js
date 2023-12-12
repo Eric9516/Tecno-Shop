@@ -1,14 +1,12 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import firebase from "../Config/firebase";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
 
 export const useUserData = () => {
     const { id } = useParams();
     const { handleSubmit, register, setValue } = useForm();
-    const context = useContext(AuthContext);
 
     useEffect(() => {
         const obtenerDatosExistentes = async () => {

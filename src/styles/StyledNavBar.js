@@ -8,10 +8,6 @@ export const NavLink = styled(Link)`
     color: #fff;
     text-decoration: none;
     padding: 10px;
-
-    &:hover {
-        color: #61dafb;
-    }
 `;
 
 export const DropDown = styled(NavDropdown)`
