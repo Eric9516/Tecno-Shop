@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import firebase from "../Config/firebase";
+import { auth, firestore, storage } from "../Config/firebase";
 import { AuthContext } from "../Context/AuthContext";
 
 export const useProfileImage = () => {
@@ -41,7 +41,7 @@ export const useProfileImage = () => {
     useEffect(() => {
         const fetchProfileImage = async () => {
             try {
-                const consulta = await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).get();
+                const consulta = await firestore.collection("imagenesDePerfil").doc(context.user.userId).get();
                 return consulta.data()?.img;
             } catch (error) {
                 console.error("Error al obtener la imagen:", error);
@@ -62,14 +62,14 @@ export const useProfileImage = () => {
     }, [context.user.userId, imgCrop]);
 
     const updateProfileImage = async () => {
-        await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).set({
+        await firestore.collection("imagenesDePerfil").doc(context.user.userId).set({
             img: imgCrop,
             id: context.user.userId,
         });
     };
 
     const deleteProfileImage = async () => {
-        await firebase.firestore().collection("imagenesDePerfil").doc(context.user.userId).delete();
+        await firestore.collection("imagenesDePerfil").doc(context.user.userId).delete();
     };
 
     return {

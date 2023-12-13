@@ -2,18 +2,18 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { Nav, Navbar } from "react-bootstrap";
-import { estiloLoading } from "../styles/loadingNavbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { MdComputer } from "react-icons/md";
 import { NavLink, DropDown, estilos, BsCart3Icon } from "../styles/StyledNavBar";
 import { AuthContext } from "../Context/AuthContext";
-import { useNavbarColor } from "../hooks/useNavbarColor";
+import { useColorCustomization } from "../hooks/useColorCustomization";
+import { estiloLoading } from "../styles/loadingNavbar";
 
 export const NavBar = () => {
     const context = useContext(AuthContext);
     const { name, lastname, userId } = context.user;
     const isLogged = context.login && name === "Eric" && lastname === "Cantoni";
-    const { navbarStyle, loading } = useNavbarColor();
+    const { style: navbarStyle, loading } = useColorCustomization("navbarColor");
 
     if (loading) {
         return (

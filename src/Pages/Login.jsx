@@ -4,7 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import firebase from "../Config/firebase";
+import { auth, firestore } from "../Config/firebase";
 import { AuthContext } from "../Context/AuthContext";
 import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/StyledLogin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -18,9 +18,9 @@ export const Login = () => {
     const context = useContext(AuthContext);
     const onSubmit = async (data) => {
         try {
-            const responseUser = await firebase.auth.signInWithEmailAndPassword(data.email, data.password);
+            const responseUser = await auth.signInWithEmailAndPassword(data.email, data.password);
             if (responseUser.user.uid) {
-                const userDocument = await firebase.firestore().collection("usuarios").where("userId", "==", responseUser.user.uid).get();
+                const userDocument = await firestore().collection("usuarios").where("userId", "==", responseUser.user.uid).get();
                 const user = userDocument.docs[0].data();
                 context.handlerLogin(user, user.name);
                 navigate("/Home");

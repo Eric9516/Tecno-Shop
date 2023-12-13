@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import firebase from "../Config/firebase";
+import { auth, firestore, storage } from "../Config/firebase";
 
 export const useCategory = () => {
     const [categorias, setCategorias] = useState([]);
@@ -8,7 +8,7 @@ export const useCategory = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const querySnapshot = await firebase.firestore().collection("productos").get();
+                const querySnapshot = await firestore.collection("productos").get();
                 const datos = querySnapshot.docs;
 
                 if (datos && datos.length > 0) {

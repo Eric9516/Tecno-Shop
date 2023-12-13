@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import firebase from "../Config/firebase";
+import { auth, firestore, storage } from "../Config/firebase";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -11,7 +11,7 @@ export const useUserData = () => {
     useEffect(() => {
         const obtenerDatosExistentes = async () => {
             try {
-                const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", id).get();
+                const consulta = await firestore().collection("datosUsuarios").where("user_id", "==", id).get();
                 if (consulta.docs.length > 0) {
                     const data = consulta.docs[0].data();
 
@@ -35,7 +35,7 @@ export const useUserData = () => {
 
     const onSubmit = async (data) => {
         try {
-            const existingDoc = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", id).get();
+            const existingDoc = await firestore().collection("datosUsuarios").where("user_id", "==", id).get();
 
             if (existingDoc.docs.length > 0) {
                 const docId = existingDoc.docs[0].id;
@@ -51,9 +51,9 @@ export const useUserData = () => {
                 if (data.instagram !== "") updatedFields.instagram = data.instagram;
                 if (data.linkWhatsapp !== "") updatedFields.linkWhatsapp = data.linkWhatsapp;
 
-                await firebase.firestore().collection("datosUsuarios").doc(docId).update(updatedFields);
+                await firestore.collection("datosUsuarios").doc(docId).update(updatedFields);
             } else {
-                await firebase.firestore().collection("datosUsuarios").add({
+                await firestore.collection("datosUsuarios").add({
                     dni: data.dni,
                     provincia: data.provincia,
                     localidad: data.localidad,

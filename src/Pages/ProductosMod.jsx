@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import firebase from "../Config/firebase";
+import { firestore } from "../Config/firebase";
 import { estilosProdMod } from "../styles/estilosProdMod";
 
 export const ProductosMod = () => {
@@ -12,7 +12,7 @@ export const ProductosMod = () => {
     useEffect(() => {
         const peticion = async () => {
             try {
-                const pet = await firebase.firestore().doc(`productos/${id}`).get();
+                const pet = await firestore.doc(`productos/${id}`).get();
                 setValue("name", pet.data().name);
                 setValue("price", pet.data().price);
                 setValue("description", pet.data().description);
@@ -27,7 +27,7 @@ export const ProductosMod = () => {
 
     const onSubmit = async (data) => {
         try {
-            await firebase.firestore().doc(`productos/${id}`).set(data);
+            await firestore.doc(`productos/${id}`).set(data);
             navigate("/home");
         } catch (error) {
             console.log(error);
@@ -36,7 +36,7 @@ export const ProductosMod = () => {
 
     const deleteProduct = async () => {
         try {
-            await firebase.firestore().doc(`productos/${id}`).delete();
+            await firestore.doc(`productos/${id}`).delete();
             navigate("/home");
         } catch (error) {
             console.log(error);

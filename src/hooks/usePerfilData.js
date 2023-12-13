@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import firebase from "../Config/firebase";
+import { auth, firestore, storage } from "../Config/firebase";
 
 export const usePerfilData = (id) => {
     const [dni, setDni] = useState("");
@@ -15,7 +15,7 @@ export const usePerfilData = (id) => {
     useEffect(() => {
         const peticion = async () => {
             try {
-                const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", id).get();
+                const consulta = await firestore.collection("datosUsuarios").where("user_id", "==", id).get();
                 if (consulta.docs.length > 0) {
                     const data = consulta.docs[0].data();
                     setDni(data.dni);

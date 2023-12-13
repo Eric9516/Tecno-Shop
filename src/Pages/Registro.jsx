@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import firebase from "../Config/firebase";
+import { auth, firestore } from "../Config/firebase";
 import { Boton, Div, Formulario, H2, Input, P, Titulo } from "../styles/StyledRegistro";
 import { calculoEdad } from "../Utils/calculoEdad";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -21,7 +21,7 @@ export const Registro = () => {
         const edad = calculoEdad(fecha);
         if (edad > 18) {
             try {
-                const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email, data.password);
+                const responseUser = await auth.createUserWithEmailAndPassword(data.email, data.password);
                 Swal.fire({
                     title: "<strong>Sus datos de han registrado exitosamente</strong>",
                     icon: "success",
@@ -31,7 +31,7 @@ export const Registro = () => {
                 });
                 navigate("/home");
                 if (responseUser.user.uid) {
-                    await firebase.firestore().collection("usuarios").add({
+                    await firestore().collection("usuarios").add({
                         name: data.name,
                         lastname: data.lastname,
                         email: data.email,

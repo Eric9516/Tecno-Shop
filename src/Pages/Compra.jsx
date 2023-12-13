@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import firebase from "../Config/firebase";
+import { firestore } from "../Config/firebase";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Swal from "sweetalert2";
@@ -53,7 +53,7 @@ export const Comprar = () => {
     useEffect(() => {
         const peticion = async () => {
             try {
-                const pet = await firebase.firestore().doc(`productos/${id}`).get();
+                const pet = await firestore().doc(`productos/${id}`).get();
                 setResultado(pet.data());
             } catch (error) {
                 console.log(error);

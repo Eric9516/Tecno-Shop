@@ -1,42 +1,19 @@
-import React, { useEffect, useState } from "react";
 import { BsFacebook, BsInstagram, BsFillTelephoneFill, BsFillArrowUpCircleFill } from "react-icons/bs";
 import { RiWhatsappFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { A, Div1, Div2, DivContenedor, DivFooter, Redes, Ul, H5 } from "../styles/StyledFooter";
-import firebase from "../Config/firebase";
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import { useColorCustomization } from "../hooks/useColorCustomization";
+import { useFooter } from "../hooks/useFooter";
 
 export const Footer = () => {
-    const context = useContext(AuthContext);
-    // const [provincia, setProvincia] = useState("");
-    // const [localidad, setLocalidad] = useState("");
-    // const [direccion, setDireccion] = useState("");
-    const [telefono, setTelefono] = useState("");
-    const [facebook, setFacebook] = useState("");
-    const [instagram, setInstagram] = useState("");
-
-    useEffect(() => {
-        const peticion = async () => {
-            try {
-                const consulta = await firebase.firestore().collection("datosUsuarios").where("user_id", "==", context.user.userId).get();
-                if (consulta.docs.length > 0) {
-                    const data = consulta.docs[0].data();
-                    setTelefono(data.telefono);
-                    setFacebook(data.facebook);
-                    setInstagram(data.instagram);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        peticion();
-    }, [context.user.userId]);
+    const { telefono, facebook, instagram, email } = useFooter();
+    const { style: footerStyle } = useColorCustomization("footerColor");
+    console.log(email);
 
     return (
         <>
-            <DivFooter id="footer">
+            <DivFooter id="footer" style={footerStyle}>
+                {" "}
                 <DivContenedor>
                     <Div1>
                         <Ul>
@@ -63,7 +40,7 @@ export const Footer = () => {
                             </li>
                             <li>
                                 <A href="mailto:ejemplo@gmail.com">
-                                    <MdEmail size="1.5em" color="#61dafb" /> {context.user.email}
+                                    <MdEmail size="1.5em" color="#61dafb" /> {email}
                                 </A>
                             </li>
                             <li>

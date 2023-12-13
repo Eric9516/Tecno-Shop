@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import firebase from "../Config/firebase";
+import { firestore } from "../Config/firebase";
 import { estilosProdAlta } from "../styles/StyledProductosAlta";
 
 export const ProductosAlta = () => {
@@ -10,7 +10,7 @@ export const ProductosAlta = () => {
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
-            await firebase.firestore().collection("productos").add(data);
+            await firestore.collection("productos").add(data);
             navigate("/home");
         } catch (error) {
             console.log(error);

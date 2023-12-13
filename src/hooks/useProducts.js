@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import firebase from "../Config/firebase";
+import { auth, firestore, storage } from "../Config/firebase";
 
 export const useProducts = (categoriaSeleccionada) => {
     const [resultado, setResultado] = useState([]);
@@ -9,7 +9,7 @@ export const useProducts = (categoriaSeleccionada) => {
 
     const fetchMore = async () => {
         try {
-            let query = firebase.firestore().collection("productos").orderBy("name", "asc").startAfter(masDatos).limit(8);
+            let query = firestore.collection("productos").orderBy("name", "asc").startAfter(masDatos).limit(8);
 
             if (categoriaSeleccionada) {
                 query = query.where("category", "==", categoriaSeleccionada);
@@ -23,7 +23,7 @@ export const useProducts = (categoriaSeleccionada) => {
             setResultado((prevResultado) => [...prevResultado, ...nuevosDatos]);
             setMasDatos(otrosDatos);
 
-            const totalQuerySnapshot = await firebase.firestore().collection("productos").get();
+            const totalQuerySnapshot = await firestore().collection("productos").get();
             const totalDatos = totalQuerySnapshot.docs;
             setCantidadProductosTotales(totalDatos.length);
         } catch (error) {
@@ -34,7 +34,7 @@ export const useProducts = (categoriaSeleccionada) => {
     useEffect(() => {
         const fetchProductos = async () => {
             try {
-                let query = firebase.firestore().collection("productos").limit(8).orderBy("name", "asc");
+                let query = firestore.collection("productos").limit(8).orderBy("name", "asc");
 
                 if (categoriaSeleccionada && categoriaSeleccionada !== "Mostrar Todos") {
                     query = query.where("category", "==", categoriaSeleccionada);
@@ -49,7 +49,7 @@ export const useProducts = (categoriaSeleccionada) => {
                 setMasDatos(otrosDatos);
                 setLoading(false);
 
-                const totalQuerySnapshot = await firebase.firestore().collection("productos").get();
+                const totalQuerySnapshot = await firestore.collection("productos").get();
                 const totalDatos = totalQuerySnapshot.docs;
                 setCantidadProductosTotales(totalDatos.length);
             } catch (error) {

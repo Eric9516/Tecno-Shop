@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "../styles/estilos.css";
 import { Card } from "react-bootstrap";
-import firebase from "../Config/firebase";
+import { auth, firestore, storage } from "../Config/firebase";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -20,7 +20,7 @@ export const Detalle = () => {
     useEffect(() => {
         const peticion = async () => {
             try {
-                const pet = await firebase.firestore().doc(`productos/${id}`).get();
+                const pet = await firestore.doc(`productos/${id}`).get();
                 setResultado(pet.data());
             } catch (error) {
                 console.log(error);
