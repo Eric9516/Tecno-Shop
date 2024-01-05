@@ -9,7 +9,7 @@ export const useColorCustomization = (settingKey) => {
     const { userId } = context.user;
 
     const changeColor = (newColor) => {
-        firestore()
+        firestore
             .collection("userSettings")
             .doc(userId)
             .update({ [settingKey]: newColor });
